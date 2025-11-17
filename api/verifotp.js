@@ -1,50 +1,74 @@
-// /api/verifotp.js
-
 import { createClient } from "@supabase/supabase-js";
+import nodemailer from "nodemailer";
+
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
-  process.env.SUPABASE_KEY
+  process.env.SUPABASE_SERVICE_KEY
 );
 
 export default async function handler(req, res) {
   if (req.method !== "POST")
     return res.status(405).json({ error: "Method not allowed" });
 
-  const { email, otp } = req.body;
-
-  if (!email || !otp)
-    return res.status(400).json({ error: "Email dan OTP wajib diisi" });
-
   try {
-    // 1️⃣ Ambil OTP terbaru berdasarkan email
-    const { data: otpData, error } = await supabase
-      .from("otp")
+    const body = await req.body;
+
+    const { email, otp } = body;
+
+    if (!email || !otp)
+      return res.status(400).json({ error: "Email dan OTP wajib diisi" });
+
+    // Ambil OTP terbaru
+    const { data: otpRow, error: otpError } = await supabase
+      .from("otp") // 👈 WAJIB
       .select("*")
       .eq("email", email)
-      .order("id", { ascending: false })
+      .order("created_at", { ascending: false })
       .limit(1)
-      .single();
+      .maybeSingle();
 
-    if (error || !otpData)
+    if (otpError) {
+      console.log("DB ERROR:", otpError);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    if (!otpRow)
       return res.status(400).json({ error: "OTP tidak ditemukan" });
 
-    // 2️⃣ Cek kode OTP
-    if (otpData.kode !== otp)
+    // Cek digunakan
+    if (otpRow.is_used)
+      return res.status(400).json({ error: "Kode OTP sudah digunakan" });
+
+    // Cek salah
+    if (otpRow.otp_code !== otp)
       return res.status(400).json({ error: "Kode OTP salah" });
 
-    // 3️⃣ (OPSIONAL) Cek kadaluwarsa
-    const created = new Date(otpData.created_at);
-    const now = new Date();
-    const selisihMenit = (now - created) / 1000 / 60;
+    // /5
 
-    if (selisihMenit > 5)
-      return res.status(400).json({ error: "Kode OTP sudah kadaluarsa" });
+    // update
+    const { error: updateError } = await supabase
+      .from("otp") // 👈 WAJIB
+      .update({
+        is_used: true,
+        used_at: new Date().toISOString(),
+      })
+      .eq("id_otp", otpRow.id_otp);
 
-    // 4️⃣ Selesai → OTP valid
-    return res.status(200).json({ message: "OTP valid, lanjutkan reset password" });
+    if (updateError) {
+      console.log("Update error:", updateError);
+      return res.status(500).json({ error: "Gagal update OTP" });
+    }
+
+    return res.status(200).json({
+      message: "OTP valid. Silakan lanjut ubah password.",
+    });
 
   } catch (err) {
-    return res.status(500).json({ error: "Server error", detail: err.message });
+    console.error("SERVER ERROR:", err);
+    return res.status(500).json({
+      error: "Server error",
+      detail: err.message,
+    });
   }
 }

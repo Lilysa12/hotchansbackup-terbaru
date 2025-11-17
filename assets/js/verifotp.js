@@ -10,7 +10,8 @@ document.getElementById("verifyOtpForm").addEventListener("submit", async (e) =>
         return;
     }
 
-    const response = await fetch("/api/verifotp", {
+    const response = await fetch("http://localhost:3000/api/verifotp", {
+
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, otp }),

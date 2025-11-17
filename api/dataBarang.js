@@ -34,11 +34,11 @@ async function loadData(page = 1, filter = "", limit = 10) {
   try {
     tableBody.innerHTML = `<tr><td colspan="8" style="text-align:center; padding: 20px;">Memuat data...</td></tr>`;
 
-    let query = supabase
-      .from("data_barang")
-      .select("*", { count: "exact" }) 
-      .order("kode_barang", { ascending: true })
-      .range(rangeFrom, rangeTo);
+  let query = supabase
+  .from("data_barang")
+  .select("*", { count: "exact" })
+  .order("id_barang", { ascending: true }) 
+  .range(rangeFrom, rangeTo);
 
     if (filter) {
       query = query.ilike("nama_barang", `%${filter}%`);
@@ -153,7 +153,7 @@ async function handleEditData(event) {
         harga_jual: hargaJual,
         stok_barang: stok
       })
-      .eq("kode_barang", kode); 
+      .eq("id_barang", kode); 
 
     if (error) throw error;
 

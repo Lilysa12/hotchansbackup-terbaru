@@ -3,35 +3,59 @@
 <head>
   <meta charset="utf-8" />
   <title>Send OTP</title>
+  <link rel="stylesheet" href="../assets/css/otp.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
 </head>
 <body>
 
-  <h2>Masukkan email</h2>
-  <input id="email" type="email" placeholder="hotchansmotor@gmail.com"/>
-  <button id="sendBtn">Kirim OTP</button>
+</body>
+</html>
 
-<script>
-document.getElementById("sendBtn").addEventListener("click", async () => {
-    const email = document.getElementById("email").value;
+    <div class="otp-page-wrapper">
+        
+        <div class="header-content">
+            <h1>Lupa Password?</h1>
+            <p class="subtitle">
+                Masukkan kode 6 digit dari email kamu untuk melanjutkan. 
+            </p>
+        </div>
 
-    if (!email) {
-        alert("Email tidak boleh kosong!");
-        return;
-    }
+        <div class="otp-content-card">
+            
+            <div class="otp-container">
+                <input type="tel" maxlength="1" class="otp-input" />
+                <input type="tel" maxlength="1" class="otp-input" />
+                <input type="tel" maxlength="1" class="otp-input" />
+                <input type="tel" maxlength="1" class="otp-input" />
+                <input type="tel" maxlength="1" class="otp-input" />
+                <input type="tel" maxlength="1" class="otp-input" />
+            </div>
 
-    const res = await fetch("/api/sendotp", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email })
-    });
+            <p id="timer">05:00</p>
 
-    const data = await res.json();
-    alert(data.message);
-});
-</script>
-<script src="../assets/js/otp.js"></script>
-<script src="../api/lupapw.js"></script>
-<script src="../api/sendotp.js"></script>
+            <button id="confirm-otp" class="btn-primary">Konfirmasi</button>
+
+            <p class="resend-text">
+                Belum masuk juga? <span id="resend-link" class="resend-link-active">Klik untuk kirim ulang kode.</span>
+            </p>
+
+        </div>
+        
+    </div>
+    
+    <footer>
+        &copy; 2025 Hot Chan's Motor. All rights reserved.
+    </footer>
+
+    <!-- HANYA SATU FILE JS: -->
+    <script src="../assets/js/otp.js"></script>
+    <script src="../api/sendotp.js"></script>
+
 
 </body>
 </html>

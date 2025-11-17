@@ -5,51 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lupa Password - Hot Chan's Motor</title>
     
-    <!-- Link CSS -->
+    <!-- CSS -->
     <link rel="stylesheet" href="../assets/css/lupapw.css"> 
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- Supabase CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 </head>
 <body>
 
     <div class="container">
-        <!-- BAGIAN FORM -->
+
+        <!-- Form Section -->
         <div class="form-section">
             <div class="content-wrapper">
+
                 <h2 class="brand-name">Hot Chan's Motor</h2>
                 
                 <div class="main-content">
                     <h1>Lupa Password?</h1>
-                    <p class="subtitle">Masukkan Password Untuk Meriset Emailmu</p> 
-    
+                    <p class="subtitle">Masukkan email untuk mereset password Anda</p>
+
                     <form id="forgotPasswordForm">
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" placeholder="hotchansmotor@gmail.com"required>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                placeholder="hotchansmotor@gmail.com"
+                                autocomplete="email"
+                                required
+                            >
                         </div>
-                        <button type="submit" class="btn-primary">Login</button> 
+
+                        <!-- Tombol dikasih ID agar JS bisa disable saat loading -->
+                        <button id="btnSubmit" type="submit" class="btn-primary">
+                            Kirim OTP
+                        </button>
                     </form>
                 </div>
 
                 <div class="bottom-content">
                     <a href="login.html" class="back-to-login">Back to Login</a>
-                    <p class="copyright">&copy; 2025 Hot Chan's Motor. All rights reserved.</p>
+                    <p class="copyright">
+                        &copy; 2025 Hot Chan's Motor. All rights reserved.
+                    </p>
                 </div>
+
             </div>
         </div>
 
-        <!-- BAGIAN GAMBAR -->
+        <!-- Image Section -->
         <div class="image-section">
-            <img src="../assets/gambar/login/gambar 2.png" alt="Ilustrasi Gembok Biru" class="illustration-image">
+            <img 
+                src="../assets/gambar/login/gambar 2.png" 
+                alt="Ilustrasi" 
+                class="illustration-image"
+            >
         </div>
+
     </div>
 
-    <!-- JS: Backend Supabase + Logika -->
+    <!-- JS: Logika Lupa Password -->
     <script src="../assets/js/lupapw.js"></script>
-        
+    <script src="../api/lupapw.js"></script>
     
-       
+</body>
+</html>

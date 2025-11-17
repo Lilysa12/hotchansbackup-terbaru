@@ -1,50 +1,168 @@
-// === Import library Supabase ===
-import { createClient } from '@supabase/supabase-js'
-
-// === Konfigurasi koneksi Supabase ===
+// ===============================
+// KONFIGURASI SUPABASE (TANPA IMPORT)
+// ===============================
 const SUPABASE_URL = "https://cwvcprzdovbpteiuuvgj.supabase.co";
-  const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3dmNwcnpkb3ZicHRlaXV1dmdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI3NzEwODYsImV4cCI6MjA3ODM0NzA4Nn0.Poi74Rm2rWUWGeoUTmP2CR5zlT_YqnY9j_OdjVz3tFw";
-  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3dmNwcnpkb3ZicHRlaXV1dmdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI3NzEwODYsImV4cCI6MjA3ODM0NzA4Nn0.Poi74Rm2rWUWGeoUTmP2CR5zlT_YqnY9j_OdjVz3tFw";
 
-// === Fungsi: Update Dashboard ===
-async function updateDashboardCards() {
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// ===============================
+// 1. KARTU STATISTIK DASHBOARD
+// ===============================
+async function loadStats() {
   try {
-    // Hitung total barang masuk
     const { data: masukData, error: masukError } = await supabase
-      .from('barang_masuk')
-      .select('stok_barang')
+      .from("barang_masuk")
+      .select("stok_barang");
 
-    if (masukError) throw masukError
+    if (masukError) throw masukError;
 
-    const totalBarangMasuk = masukData.reduce((acc, item) => acc + (item.stok_barang || 0), 0)
+    const totalMasuk = masukData.reduce(
+      (sum, x) => sum + (x.stok_barang || 0),
+      0
+    );
 
-    // Hitung total barang keluar
     const { data: keluarData, error: keluarError } = await supabase
-      .from('barang_keluar')
-      .select('stok_barang')
+      .from("barang_keluar")
+      .select("jumlah_keluar");
 
-    if (keluarError) throw keluarError
+    if (keluarError) throw keluarError;
 
-    const totalBarangKeluar = keluarData.reduce((acc, item) => acc + (item.stok_barang || 0), 0)
+    const totalKeluar = keluarData.reduce(
+      (sum, x) => sum + (x.jumlah_keluar || 0),
+      0
+    );
 
-    // Hitung total stok barang
-    const { data: barangData, error: barangError } = await supabase
-      .from('barang')
-      .select('stok_barang')
+    const totalBarang = totalMasuk - totalKeluar;
 
-    if (barangError) throw barangError
+    document.getElementById("total-barang").textContent = totalBarang;
+    document.getElementById("total-masuk").textContent = totalMasuk;
+    document.getElementById("total-keluar").textContent = totalKeluar;
 
-    const totalStokBarang = barangData.reduce((acc, item) => acc + (item.stok_barang || 0), 0)
-
-    console.log('=== HASIL DASHBOARD ===')
-    console.log('Total Barang:', totalStokBarang)
-    console.log('Barang Masuk:', totalBarangMasuk)
-    console.log('Barang Keluar:', totalBarangKeluar)
-
-  } catch (error) {
-    console.error('Gagal memuat data dashboard:', error)
+  } catch (e) {
+    console.error("Gagal memuat data statistik:", e.message);
   }
 }
 
-// === Jalankan ===
-updateDashboardCards()
+// ===============================
+// 2. TABEL BARANG MASUK
+// ===============================
+async function loadBarangMasuk(page = 1, limit = 5) {
+  currentPageMasuk = page;
+  rowsPerPageMasuk = limit;
+
+  const rangeFrom = (page - 1) * limit;
+  const rangeTo = rangeFrom + limit - 1;
+
+  const body = document.querySelector("#tabelMasuk tbody");
+  body.innerHTML = `<tr><td colspan="4" style="text-align:center;">Memuat...</td></tr>`;
+
+  const { data, error, count } = await supabase
+    .from("barang_masuk")
+    .select("id_barang, tanggal, stok_barang, data_barang(kode_barang, nama_barang)", { count: "exact" })
+    .order("tanggal", { ascending: false })
+    .range(rangeFrom, rangeTo);
+
+  if (error) {
+    body.innerHTML = `<tr><td colspan="4">Gagal memuat data.</td></tr>`;
+    return;
+  }
+
+  body.innerHTML = "";
+
+  data.forEach((item) => {
+    body.innerHTML += `
+      <tr>
+        <td>${item.data_barang.kode_barang}</td>
+        <td>${item.data_barang.nama_barang}</td>
+        <td>${new Date(item.tanggal).toLocaleDateString("id-ID")}</td>
+        <td style="color:green;">${item.stok_barang}</td>
+      </tr>
+    `;
+  });
+
+  updatePagination("Masuk", count, page, limit);
+}
+
+// ===============================
+// 3. TABEL BARANG KELUAR
+// ===============================
+async function loadBarangKeluar(page = 1, limit = 5) {
+  currentPageKeluar = page;
+  rowsPerPageKeluar = limit;
+
+  const rangeFrom = (page - 1) * limit;
+  const rangeTo = rangeFrom + limit - 1;
+
+  const body = document.querySelector("#tabelKeluar tbody");
+  body.innerHTML = `<tr><td colspan="4" style="text-align:center;">Memuat...</td></tr>`;
+
+  const { data, error, count } = await supabase
+    .from("barang_keluar")
+    .select("id_barang, tanggal, jumlah_keluar, data_barang(kode_barang, nama_barang)", { count: "exact" })
+    .order("tanggal", { ascending: false })
+    .range(rangeFrom, rangeTo);
+
+  if (error) {
+    body.innerHTML = `<tr><td colspan="4">Gagal memuat data.</td></tr>`;
+    return;
+  }
+
+  body.innerHTML = "";
+
+  data.forEach((item) => {
+    body.innerHTML += `
+      <tr>
+        <td>${item.data_barang.kode_barang}</td>
+        <td>${item.data_barang.nama_barang}</td>
+        <td>${new Date(item.tanggal).toLocaleDateString("id-ID")}</td>
+        <td style="color:red;">${item.jumlah_keluar}</td>
+      </tr>
+    `;
+  });
+
+  updatePagination("Keluar", count, page, limit);
+}
+
+// ===============================
+// 4. PAGINATION
+// ===============================
+function updatePagination(type, totalCount, page, limit) {
+  const totalPages = Math.ceil(totalCount / limit);
+  const prefix = type === "Masuk" ? "Masuk" : "Keluar";
+
+  const pageNumbers = document.getElementById(`pageNumbers${prefix}`);
+  const prev = document.getElementById(`prevPage${prefix}`);
+  const next = document.getElementById(`nextPage${prefix}`);
+
+  pageNumbers.innerHTML = "";
+  prev.disabled = (page <= 1);
+  next.disabled = (page >= totalPages);
+
+  for (let i = 1; i <= totalPages; i++) {
+    const span = document.createElement("span");
+    span.textContent = i;
+    if (i === page) span.classList.add("active");
+    span.onclick = () => {
+      type === "Masuk"
+        ? loadBarangMasuk(i, limit)
+        : loadBarangKeluar(i, limit);
+    };
+    pageNumbers.appendChild(span);
+  }
+}
+
+// ===============================
+// 5. START
+// ===============================
+let currentPageMasuk = 1;
+let rowsPerPageMasuk = 5;
+
+let currentPageKeluar = 1;
+let rowsPerPageKeluar = 5;
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadStats();
+  loadBarangMasuk();
+  loadBarangKeluar();
+});

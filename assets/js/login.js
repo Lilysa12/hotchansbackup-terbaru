@@ -1,110 +1,86 @@
-// --- Supabase Config ---
+// --- Supabase Config (Frontend Only) ---
 const SUPABASE_URL = "https://cwvcprzdovbpteiuuvgj.supabase.co";
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3dmNwcnpkb3ZicHRlaXV1dmdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI3NzEwODYsImV4cCI6MjA3ODM0NzA4Nn0.Poi74Rm2rWUWGeoUTmP2CR5zlT_YqnY9j_OdjVz3tFw";
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-// --- Admin Statis (untuk testing lokal) ---
-const STATIC_ADMIN = {
-  id_admin: "27",
-  username: "hotchans",
-  email: "hotchansmotor@gmail.com",
-  password: "$2a$12$aw4UxjgSr5mESugHJ.PCo.a8DGOEUalnEGtQhHDjOget009YYdaQS",
-};
+  const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3dmNwcnpkb3ZicHRlaXV1dmdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI3NzEwODYsImV4cCI6MjA3ODM0NzA4Nn0.Poi74Rm2rWUWGeoUTmP2CR5zlT_YqnY9j_OdjVz3tFw";
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // --- Element Refs ---
 const loginForm = document.getElementById("login-form");
 const loginEmail = document.getElementById("login-email");
 const loginPassword = document.getElementById("login-password");
 
-// --- Utility Log ---
-function showDebug(...msg) {
+// DEBUG
+function debugLog(...msg) {
   console.log("[LOGIN DEBUG]", ...msg);
 }
 
+// -------------------------
+// LOGIN SUBMIT
+// -------------------------
 if (loginForm) {
   loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const usernameInput = (loginEmail.value || "").trim();
-    const passwordInput = (loginPassword.value || "").trim();
+    const inputUser = (loginEmail.value || "").trim();
+    const inputPass = (loginPassword.value || "").trim();
 
-    if (!usernameInput || !passwordInput) {
-      alert("⚠ Harap isi username dan password!");
+    if (!inputUser || !inputPass) {
+      alert("⚠ Silakan isi username/email dan password!");
       return;
     }
 
-    // --- Cek admin statis ---
-    if (
-      (usernameInput === STATIC_ADMIN.username ||
-        usernameInput === STATIC_ADMIN.email ||
-        usernameInput === STATIC_ADMIN.id_admin) &&
-      passwordInput === STATIC_ADMIN.password
-    ) {
-      showDebug("Login via STATIC_ADMIN sukses");
-      localStorage.setItem(
-        "admin_login",
-        JSON.stringify({
-          id_admin: STATIC_ADMIN.id_admin,
-          username: STATIC_ADMIN.username,
-          email: STATIC_ADMIN.email,
-          source: "static",
-        })
-      );
-      alert("✅ Login berhasil (Admin Statis)!");
-      window.location.href = "dashboard.html";
+    debugLog("Sedang mengambil data admin dari Supabase...");
+
+    // --- Ambil admin berdasarkan username / email / id_admin ---
+    const { data, error } = await supabase
+      .from("admin")
+      .select("*")
+      .or(
+        `username.eq.${inputUser},email.eq.${inputUser},id_admin.eq.${inputUser}`
+      )
+      .maybeSingle();
+
+    // Jika Supabase error
+    if (error) {
+      console.error("Supabase Error:", error);
+      alert("❌ Tidak dapat terhubung ke database!");
       return;
     }
 
-    // --- Cek dari Supabase ---
-    try {
-      let { data, error } = await supabase
-        .from("admin")
-        .select("*")
-        .or(`username.eq.${usernameInput},email.eq.${usernameInput},id_admin.eq.${usernameInput}`)
-        .maybeSingle();
-
-      if (error) {
-        console.error("Supabase error:", error.message);
-        alert("❌ Gagal menghubungkan ke database Supabase!");
-        return;
-      }
-
-      if (!data) {
-        alert("❌ Username tidak ditemukan!");
-        return;
-      }
-
-      if (data.password !== passwordInput) {
-        alert("❌ Password salah!");
-        return;
-      }
-
-      // Simpan data login ke localStorage
-      localStorage.setItem(
-        "admin_login",
-        JSON.stringify({
-          id_admin: data.id_admin,
-          username: data.username,
-          email: data.email,
-          source: "supabase",
-        })
-      );
-
-      alert("✅ Login berhasil!");
-      window.location.href = "dashboard.html";
-    } catch (err) {
-      console.error("Kesalahan saat login:", err);
-      alert("⚠ Terjadi kesalahan. Lihat console untuk detailnya.");
+    // Jika user tidak ditemukan
+    if (!data) {
+      alert("❌ Username / Email / ID Admin tidak ditemukan!");
+      return;
     }
+
+    // Cek password
+    if (data.password !== inputPass) {
+      alert("❌ Password salah!");
+      return;
+    }
+
+    // Simpan session
+    localStorage.setItem(
+      "admin_login",
+      JSON.stringify({
+        id_admin: data.id_admin,
+        username: data.username,
+        email: data.email,
+      })
+    );
+
+    alert("✅ Login berhasil!");
+    window.location.href = "dashboard.html";
   });
 }
 
-// --- Cegah redirect otomatis dari session lama ---
+// -------------------------
+// AUTO CHECK SESSION
+// -------------------------
 document.addEventListener("DOMContentLoaded", () => {
   const user = localStorage.getItem("admin_login");
   if (user) {
-    console.log("✅ Sudah login, redirect ke dashboard...");
+    debugLog("✔ Sudah login");
   } else {
-    console.log("🕓 Belum login, tetap di halaman login.");
+    debugLog("✖ Belum login");
   }
 });
