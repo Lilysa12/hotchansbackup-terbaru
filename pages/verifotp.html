@@ -1,12 +1,19 @@
+<!-- Document type HTML -->
 <!doctype html>
 <html>
 <head>
+  
+  <!-- karakter UTF-8 --> 
   <meta charset="utf-8" />
+  <!-- Judul halaman -->
   <title>Send OTP</title>
+  <!-- Import CSS utama untuk halaman verifotp -->
   <link rel="stylesheet" href="../assets/css/otp.css">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <!-- Optimasi load font Google -->  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!--Import font Inter -->
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
         rel="stylesheet">
@@ -16,8 +23,11 @@
 </body>
 </html>
 
+    
+    <!-- Wrapper utama halaman OTP -->
     <div class="otp-page-wrapper">
         
+        <!-- Header halaman OTP dengan judul dan subtitle -->
         <div class="header-content">
             <h1>Lupa Password?</h1>
             <p class="subtitle">
@@ -25,9 +35,12 @@
             </p>
         </div>
 
+        <!-- Card berisi input OTP dan tombol konfirmasi -->
         <div class="otp-content-card">
             
+            <!-- Container input OTP -->
             <div class="otp-container">
+                <!-- Enam input untuk tiap digit OTP, hanya menerima angka maksimal 1 karakter -->
                 <input type="tel" maxlength="1" class="otp-input" />
                 <input type="tel" maxlength="1" class="otp-input" />
                 <input type="tel" maxlength="1" class="otp-input" />
@@ -36,10 +49,13 @@
                 <input type="tel" maxlength="1" class="otp-input" />
             </div>
 
+            <!-- Timer mundur untuk OTP -->
             <p id="timer">05:00</p>
 
+            <!-- Tombol untuk konfirmasi OTP -->
             <button id="confirm-otp" class="btn-primary">Konfirmasi</button>
 
+            <!-- Teks untuk mengirim ulang OTP jika belum diterima -->
             <p class="resend-text">
                 Belum masuk juga? <span id="resend-link" class="resend-link-active">Klik untuk kirim ulang kode.</span>
             </p>
@@ -48,11 +64,12 @@
         
     </div>
     
+    <!-- Footer halaman -->
     <footer>
         &copy; 2025 Hot Chan's Motor. All rights reserved.
     </footer>
 
-    <!-- HANYA SATU FILE JS: -->
+    <!-- Menghubungkan file JS yang mengatur logika OTP -->
     <script src="../assets/js/otp.js"></script>
     <script src="../api/sendotp.js"></script>
 
