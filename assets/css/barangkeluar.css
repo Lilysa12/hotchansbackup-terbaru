@@ -1,25 +1,28 @@
 /* ==== PENGATURAN DASAR & FONT ==== */
+/* Mendefinisikan variabel warna untuk digunakan di seluruh stylesheet */
 :root {
     --blue-primary: #1F6EFF;
-    --blue-dark: #1558CC; /* Biasanya lebih gelap untuk hover */
+    --blue-dark: #1558CC; 
     --white: #FFFFFF;
     --gray-bg: #F9FAFB;
     --gray-light: #F3F4F6;
     --gray-border: #E5E7EB;
     --gray-text: #1F2937;
     --gray-dark: #1F2937;
-    --red: #EF4444; /* Warna Merah Standar */
+    --red: #EF4444; 
     --green: #10B981;
-    --red-delete: #1F6EFF; /* Warna merah untuk tombol delete */
+    --red-delete: #1F6EFF; 
     --red-delete-hover: #1F6EFF;
 }
 
+/* Reset margin, padding, dan box-sizing semua elemen */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Styling dasar body, font, warna, dan layout flex */
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--gray-bg);
@@ -27,12 +30,14 @@ body {
     display: flex;
 }
 
+/* Container utama untuk sidebar dan konten */
 .container {
     display: flex;
     width: 100%;
 }
 
 /* ==== SIDEBAR ==== */
+/* Styling untuk sidebar tetap di sisi kiri dengan warna biru */
 .sidebar {
     width: 230px;
     background: var(--blue-primary);
@@ -47,6 +52,7 @@ body {
     top: 0;
 }
 
+/* Logo sidebar */
 .sidebar-logo {
     font-weight: 700;
     font-size: 18px;
@@ -54,6 +60,7 @@ body {
     padding-left: 10px;
 }
 
+/* Menu navigasi sidebar */
 .nav-menu {
     list-style: none;
 }
@@ -62,6 +69,7 @@ body {
     margin-bottom: 15px;
 }
 
+/* Item menu sidebar */
 .nav-item {
     display: flex;
     align-items: center;
@@ -73,16 +81,19 @@ body {
     color: white;
 }
 
+/* Efek hover pada item menu */
 .nav-item:hover {
     background: rgba(255, 255, 255, 0.1);
 }
 
+/* Ikon dalam menu */
 .nav-item img {
     width: 18px;
     margin-right: 10px;
     filter: brightness(0) invert(1);
 }
 
+/* Status aktif menu */
 .nav-item.active {
     background: var(--white);
     color: var(--blue-primary);
@@ -97,10 +108,12 @@ body {
     filter: none;
 }
 
+/* Menu bawah sidebar */
 .nav-bottom {
     margin-top: 30px;
 }
 
+/* Judul section di sidebar */
 .nav-section-title {
     font-size: 14px;
     margin-bottom: 8px;
@@ -110,6 +123,7 @@ body {
 }
 
 /* ==== KONTEN UTAMA ==== */
+/* Bagian konten utama di sebelah sidebar */
 .main-content {
     flex: 1;
     padding: 30px 40px;
@@ -119,6 +133,7 @@ body {
     margin-left: 230px;
 }
 
+/* Header konten utama */
 .main-content header h2 {
     color: var(--blue-primary);
     font-size: 28px;
@@ -130,12 +145,14 @@ body {
     margin-top: 4px;
 }
 
+/* Judul sambutan */
 .main-content .welcome-title {
     color: var(--blue-primary);
     font-size: 22px;
     font-weight: 600;
 }
 
+/* Subjudul */
 .main-content .subtitle {
     color: #6b7280;
     margin-bottom: 25px;
@@ -148,6 +165,7 @@ body {
     margin-top: 24px;
 }
 
+/* Styling dasar kartu */
 .card {
     width: 278px;
     height: 117px;
@@ -161,6 +179,7 @@ body {
     border: 1px solid var(--white);
 }
 
+/* Kartu biru */
 .card.card-blue {
     background: linear-gradient(to bottom right, #4179F5, #26478F);
     color: var(--white);
@@ -180,12 +199,14 @@ body {
     line-height: 1;
 }
 
+/* Kartu aksi */
 .card.card-action h3 {
     font-size: 16px;
     font-weight: 500;
     color: var(--gray-dark);
 }
 
+/* Tombol utama */
 .btn-primary {
     background-color: var(--blue-primary);
     color: var(--white);
@@ -303,6 +324,7 @@ tbody tr:last-child td {
     border-bottom: none;
 }
 
+/* Highlight tanggal */
 .date-highlight {
     background-color: #F3F3F3;
     color: #9E9E9E;
@@ -311,8 +333,9 @@ tbody tr:last-child td {
     font-weight: 500;
 }
 
+/* Warna jumlah barang */
 .quantity-red {
-    color: var(--red); /* Warna Merah untuk Barang Keluar */
+    color: var(--red); 
     font-weight: 600;
 }
 
@@ -385,7 +408,8 @@ tbody tr:last-child td {
 }
 
 
-/* ==== MODALS (Popups) - Perbaikan Diterapkan ==== */
+/* ==== MODALS (Popups) ==== */
+/* Overlay modal untuk gelapkan background dan centering modal */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -501,7 +525,7 @@ tbody tr:last-child td {
     background-color: var(--white);
 }
 
-/* Input dengan ikon */
+/* Input dengan kalender */
 .input-with-icon {
     position: relative;
 }
@@ -526,7 +550,7 @@ input[type="month"]::-webkit-calendar-picker-indicator {
     cursor: pointer;
 }
 
-/* Tombol Modal */
+/* Tombol dalam Modal */
 .full-width-btn {
     grid-column: 1 / -1;
     width: 100%;
@@ -567,10 +591,10 @@ input[type="month"]::-webkit-calendar-picker-indicator {
     background-color: var(--gray-border);
 }
 
-/* --- PERBAIKAN MODAL HAPUS (Delete Confirm) --- */
+/* --- MODAL HAPUS --- */
 .delete-confirm-modal {
     max-width: 400px;
-    /* KUNCI PERBAIKAN: HAPUS display: flex !important; di sini! */
+
     flex-direction: column;
     align-items: center;
     text-align: center;
@@ -578,7 +602,7 @@ input[type="month"]::-webkit-calendar-picker-indicator {
     justify-content: center;
 }
 
-/* KUNCI PERBAIKAN: Modal Hapus tampil sebagai FLEX HANYA ketika kelas .show ada */
+
 .delete-confirm-modal.show {
     display: flex;
 }
@@ -662,7 +686,7 @@ input[type="month"]::-webkit-calendar-picker-indicator {
         height: auto;
         overflow: visible;
         border-radius: 0;
-        margin-left: 0; /* Tambahkan ini agar konten cetak tidak tergeser */
+        margin-left: 0; 
     }
 
     .table-section {
