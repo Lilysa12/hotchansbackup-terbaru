@@ -1,6 +1,7 @@
-/* ==== PENGATURAN GLOBAL ==== */
+/* Import font Poppins dari Google Fonts dengan berbagai weight */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
+/* Reset dasar untuk html dan body */
 html, body {
     height: 100%;
     width: 100%;
@@ -9,6 +10,7 @@ html, body {
     box-sizing: border-box;
 }
 
+/* Style body utama */
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #f4f7f6;
@@ -18,7 +20,7 @@ body {
     min-height: 100vh;
 }
 
-/* ==== CONTAINER UTAMA ==== */
+/* Container untuk form + image */
 .container {
     display: flex;
     width: 100%;
@@ -27,7 +29,7 @@ body {
     overflow: hidden;
 }
 
-/* ==== BAGIAN FORM ==== */
+/* Bagian kiri form section */
 .form-section {
     width: 50%;
     padding: 60px 40px 60px 120px;
@@ -37,6 +39,7 @@ body {
     align-items: flex-start;
 }
 
+/* Wrapper konten internal form */
 .content-wrapper {
     display: flex;
     flex-direction: column;
@@ -65,10 +68,10 @@ body {
     flex-direction: column;
 }
 
-/* === Judul "Ganti Password Anda Berhasil!" === */
+/* === Judul utama "Ganti Password Anda Berhasil!" === */
 .title-success {
-    font-size: 2.5em; /* sedikit lebih kecil agar 1 baris cukup */
-    font-weight: 800;
+    font-size: 2.5em; /* ukuran font besar */
+    font-weight: 800; /* bold extra */
     color: #000;
     line-height: 1.5;
     margin-top: 0;
@@ -76,8 +79,9 @@ body {
     word-spacing: 3px; /* kasih jarak antar kata */
 }
 
+/* Highlight khusus kata "Berhasil!" agar pindah baris */
 .highlight-success {
-    display: block; /* "Berhasil!" pindah baris sendiri */
+    display: block; 
     color: #000;
 }
 
@@ -87,8 +91,8 @@ body {
     color: #666;
     margin-bottom: 30px;
     white-space: normal;
-    max-width: 100%; /* dari 350px → biar cukup 1 baris */
-    line-height: 1.6; /* biar rapi jika di layar kecil */
+    max-width: 100%; /* lebar maksimum 100% */
+    line-height: 1.6; /* spasi antar baris rapi */
 }
 
 /* === Link "Back to Login" === */
@@ -103,7 +107,7 @@ body {
 }
 
 .link-login:hover {
-    color: #1558cc;
+    color: #1558cc; /* biru gelap saat hover */
 }
 
 /* ==== COPYRIGHT ==== */
@@ -111,7 +115,7 @@ body {
     margin-top: 40px;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: center; /* center horizontal */
 }
 
 .copyright {
@@ -140,10 +144,12 @@ body {
 
 /* ==== RESPONSIF ==== */
 @media (max-width: 980px) {
+    /* Sembunyikan gambar */
     .image-section {
         display: none;
     }
 
+    /* Form full width dan center text */
     .form-section {
         width: 100%;
         padding: 40px 20px;
@@ -151,12 +157,14 @@ body {
         text-align: center;
     }
 
+    /* Logo tetap di kiri */
     .brand-name {
         align-self: flex-start;
         margin-left: 0;
         margin-right: auto;
     }
 
+    /* Konten utama responsive */
     .main-content {
         max-width: 90%;
         margin: 50px auto;
@@ -164,6 +172,7 @@ body {
         text-align: center;
     }
 
+    /* Bottom content responsive */
     .bottom-content {
         width: 90%;
         justify-content: center;
@@ -171,6 +180,7 @@ body {
         margin-right: auto;
     }
 
+    /* Copyright responsive */
     .copyright {
         text-align: center;
         padding-bottom: 30px;
