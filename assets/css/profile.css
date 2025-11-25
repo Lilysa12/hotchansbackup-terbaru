@@ -1,6 +1,4 @@
-/* ==================================== */
-/* 1. GLOBAL & RESET */
-/* ==================================== */
+/* Reset margin, padding, box-sizing untuk semua elemen, plus font default Inter */
 * {
     margin: 0;
     padding: 0;
@@ -8,23 +6,21 @@
     font-family: "Inter", sans-serif;
 }
 
-/* Kunci body biar gak ikut scroll */
+/* Body utama */
 body {
     background-color: #f7f9fc;
     height: 100vh; 
     overflow-y: hidden; 
 }
 
-/* Kunci container biar gak ikut scroll */
+/* Container utama flex untuk sidebar dan konten utama */
 .container {
     display: flex;
     width: 100%;
     height: 100vh; 
 }
 
-/* ==================================== */
-/* 2. SIDEBAR */
-/* ==================================== */
+/* Sidebar kiri, warna biru */
 .sidebar {
     width: 230px;
     background: #1f6eff;
@@ -36,6 +32,7 @@ body {
     height: 100%; /* Penuhi tinggi container */
 }
 
+/* Logo / brand name di sidebar */
 .sidebar-logo {
     font-weight: 700;
     font-size: 18px;
@@ -43,12 +40,14 @@ body {
     padding-left: 10px;
 }
 
+/* Daftar menu navigasi */
 .nav-menu {
     list-style: none;
 }
 .nav-menu li {
     margin-bottom: 10px;
 }
+/* Item menu */
 .nav-item {
     display: flex;
     align-items: center;
@@ -63,6 +62,7 @@ body {
 .nav-item:hover {
     background: rgba(255, 255, 255, 0.1);
 }
+/* Span dan ikon di nav */
 .nav-item span {
     color: inherit; 
 }
@@ -73,6 +73,7 @@ body {
     filter: brightness(0) invert(1);
     object-fit: contain;
 }
+/* Item aktif */
 .nav-item.active {
     background: #fff;
     color: #1f6eff;
@@ -84,9 +85,11 @@ body {
 .nav-item.active img {
     filter: none;
 }
+/* Bagian bawah sidebar */
 .nav-bottom {
     margin-top: 30px;
 }
+/* Judul section sidebar */
 .nav-section-title {
     font-size: 14px;
     margin-bottom: 8px;
@@ -97,9 +100,7 @@ body {
 }
 
 
-/* ==================================== */
-/* 3. MAIN CONTENT (LAYOUT) */
-/* ==================================== */
+/* Konten utama kanan sidebar */
 .main-content {
     flex: 1;
     padding: 24px; 
@@ -109,6 +110,7 @@ body {
     justify-content: center; 
 }
 
+/* Layout profil (kiri=menu, kanan=card) */
 .profile-layout {
     display: flex;
     max-width: 1200px; 
@@ -116,10 +118,7 @@ body {
     gap: 20px; 
 }
 
-/* =====================================
-BAGIAN KIRI (MY PROFILE)
-=====================================
-*/
+/* (MY PROFILE)*/
 .settings-menu {
     width: 306px;
     height: 770px; /* Tinggi statis sesuai gambar */
@@ -145,6 +144,7 @@ BAGIAN KIRI (MY PROFILE)
     text-align: left;
 }
 
+/* Daftar menu profil */
 .settings-menu ul {
     list-style: none;
     margin-bottom: 12px; 
@@ -171,6 +171,7 @@ BAGIAN KIRI (MY PROFILE)
     background-color: #f8f9fa;
     color: #1f6eff;
 }
+/* Daftar menu profil */
 .settings-menu .logout-btn {
     display: flex;
     align-items: center;
@@ -200,10 +201,7 @@ BAGIAN KIRI (MY PROFILE)
 }
 
 
-/* =====================================
-BAGIAN KANAN (CARD-CARD)
-=====================================
-*/
+/* BAGIAN KANAN (CARD-CARD) */
 .profile-details {
     flex: 1;
     background-color: #f4f7f6;
@@ -215,15 +213,16 @@ BAGIAN KANAN (CARD-CARD)
     padding-bottom: 39px; /* Jarak 39px di bawah */
 }
 
+/* Card dasar */
 .card {
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     box-sizing: border-box; 
-    width: 100%; /* Lebar card ngikutin .profile-details */
+    width: 100%; 
 }
 
-/* UKURAN CARD (Tinggi Sesuai Request, Lebar Otomatis) */
+/* Jenis card berbeda tinggi & max-width */
 .card.card-admin {
     height: 119px;
     max-width: 592px; /* Lebar maks */
@@ -237,7 +236,7 @@ BAGIAN KANAN (CARD-CARD)
     max-width: 584px; /* Lebar maks */
 }
 
-
+/* Header card */
 .card-header {
     display: flex;
     justify-content: space-between;
@@ -246,6 +245,7 @@ BAGIAN KANAN (CARD-CARD)
     border-bottom: 1px solid #e2e8f0;
 }
 
+/* Header biru khusus admin */
 .card-header.blue-header {
     background-color: #1f6eff;
     color: white;
@@ -262,6 +262,7 @@ BAGIAN KANAN (CARD-CARD)
     font-weight: 600; /* "Informasi Pribadi" BOLD */
 }
 
+/* Tombol edit */
 .edit-btn {
     background-color: white;
     border: 1px solid #cbd5e1;
@@ -285,10 +286,12 @@ BAGIAN KANAN (CARD-CARD)
     object-fit: contain;
 }
 
+/* Body card */
 .card-body {
     padding: 24px;
 }
 
+/* Admin profile */
 .admin-profile {
     display: flex;
     align-items: center;
@@ -327,19 +330,14 @@ BAGIAN KANAN (CARD-CARD)
     font-weight: 400; /* NORMAL/LIGHT */
 }
 
-/* =====================================
-INI REVISINYA, BANG. WARNA JADI ABU MUDA.
-=====================================
+
 */
 .admin-info p.admin-type {
     font-size: 0.9rem;
     color: #A3A3A3; /* ABU-ABU MUDA */
     font-weight: 400; /* "Admin" NORMAL/LIGHT */
 }
-/* =====================================
-AKHIR REVISI
-=====================================
-*/
+
 
 
 .grid-form { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 30px; }
@@ -363,9 +361,8 @@ AKHIR REVISI
 }
 
 
-/* ==================================== */
-/* 4. MODAL (TETAP SAMA) */
-/* ==================================== */
+
+/* Modal dasar */
 .modal {
     display: none; 
     position: fixed; 
@@ -462,6 +459,7 @@ AKHIR REVISI
     cursor: pointer;
     transition: background-color 0.3s;
 }
+/* Tombol modal */
 .btn-save {
     background-color: #1f6eff;
     color: white;
@@ -484,7 +482,7 @@ AKHIR REVISI
     background-color: #b02a37;
 }
 
-/* === Notifikasi Popup Style === */
+/* === Notifikasi popup === */
 .notif-popup {
   max-width: 600px;
   background: #fff;
@@ -612,16 +610,16 @@ AKHIR REVISI
 .notif-item.success { background: #e8ffe8; }
 
 
-/* === Perbaikan dan Tambahan untuk Notifikasi Popup === */
+
 
 /* Pastikan .notif-popup memiliki position: relative agar
    tombol close (X) muncul di dalam popup */
 .notif-popup {
     position: relative;
-    /* (Anda sudah punya style lain untuk ini, biarkan saja) */
+    
 }
 
-/* Style untuk ikon bulat seperti di contoh */
+
 .notif-icon-circle {
     width: 40px;
     height: 40px;
@@ -636,31 +634,31 @@ AKHIR REVISI
 
 /* Warna background ikon yang berbeda */
 .notif-icon-circle.house {
-    background-color: #e6f0ff; /* Biru muda */
+    background-color: #e6f0ff; 
     color: #4a90e2;
 }
 .notif-icon-circle.money {
-    background-color: #e8f7f0; /* Hijau muda */
+    background-color: #e8f7f0; 
     color: #00a676;
 }
 .notif-icon-circle.time {
-    background-color: #fef3e6; /* Oranye muda */
+    background-color: #fef3e6; 
     color: #f5a623;
 }
 
 /* Ganti .notif-icon (jika ada) dengan .notif-icon-circle di .notif-item */
 .notif-item {
     display: flex;
-    align-items: flex-start; /* Ubah dari center ke flex-start */
+    align-items: flex-start; 
     background: #f9fafb;
     border-radius: 10px;
-    padding: 15px; /* Sedikit lebih besar paddingnya */
+    padding: 15px; 
     margin-bottom: 10px;
 }
 
 .notif-info p {
     font-size: 14px;
-    color: #555; /* Sedikit lebih gelap agar mudah dibaca */
+    color: #555; 
     line-height: 1.5;
     margin-bottom: 6px;
 }
@@ -684,7 +682,7 @@ AKHIR REVISI
     text-decoration: underline;
 }
 
-/* === Popup Edit Profil versi dua kolom, jarak rapat === */
+/* === Edit Profil Modal versi grid 2 kolom === */
 #edit-profile-modal .modal-content {
   max-width: 850px;  /* Lebar pas di layar */
   padding: 20px 28px;
