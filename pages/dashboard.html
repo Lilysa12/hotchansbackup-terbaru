@@ -1,13 +1,20 @@
+<!-- Document type HTML -->
 <!DOCTYPE html>
 <html lang="id">
 
 <head>
+  <!-- karakter UTF-8 -->
   <meta charset="UTF-8" />
+  <!-- Responsive design -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Judul halaman -->
   <title>Dashboard | Hot Chan’s Motor</title>
+  <!-- Import CSS utama untuk halaman dashboard -->
   <link rel="stylesheet" href="../assets/css/dashboard.css" />
+  <!-- Optimasi load font Google -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!--Import font Inter -->
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
     rel="stylesheet" />
@@ -16,26 +23,35 @@
 <body>
   <div class="container dashboard-container">
     <!-- ==== SIDEBAR ==== -->
+    <!-- Sidebar navigasi utama berisi menu untuk Dashboard, Data Barang, Barang Masuk/Keluar -->
     <nav class="sidebar">
       <div class="nav-top">
+        <!-- Logo sidebar -->
         <h1 class="sidebar-logo">Hot Chan’s Motor</h1>
         <ul class="nav-menu">
+          <!-- Menu dashboard aktif -->
           <li><a href="dashboard.html" class="nav-item active"><img src="../assets/gambar/icons/dashboard.png"
                 alt="Dashboard" /> <span>Dashboard</span></a></li>
+          <!-- Menu data barang -->
           <li><a href="databarang.html" class="nav-item"><img src="../assets/gambar/icons/data barang.png"
                 alt="Data Barang" /> <span>Data Barang</span></a></li>
+          <!-- Menu barang masuk -->
           <li><a href="barangmasuk.html" class="nav-item"><img src="../assets/gambar/icons/barang masuk.png"
                 alt="Barang Masuk" /> <span>Barang Masuk</span></a></li>
+          <!-- Menu barang keluar -->
           <li><a href="barangkeluar.html" class="nav-item"><img src="../assets/gambar/icons/barang keluar.png"
                 alt="Barang Keluar" /> <span>Barang Keluar</span></a></li>
         </ul>
       </div>
       <div class="nav-bottom">
+        <!-- Judul bagian akun -->
         <span class="nav-section-title">Akun</span>
         <ul class="nav-menu">
+          <!-- Menu tentang kami -->
           <li><a href="tentangkami.html" class="nav-item"><img src="../assets/gambar/icons/kelola toko.png"
                 alt="Tentang Kami" /> <span>Tentang Kami</span></a></li>
-          <li><a href="profile.html" class="nav-item"><img src="../assets/gambar/icons/profile.png" alt="Profile" />
+          <!-- Menu profile -->
+                <li><a href="profile.html" class="nav-item"><img src="../assets/gambar/icons/profile.png" alt="Profile" />
               <span>Profile</span></a></li>
         </ul>
       </div>
@@ -49,6 +65,7 @@
       </div>
 
       <!-- ==== SUMMARY CARDS ==== -->
+       <!-- Section berisi kartu ringkasan data: total barang, barang masuk, barang keluar -->
       <section class="summary-cards dashboard-stats">
         <div class="card stat-card primary sticky-card">
           <h4>Data Barang</h4>
@@ -77,6 +94,7 @@
           </div>
         </div>
 
+        <!-- Kontainer tabel barang masuk -->
         <div class="table-container">
           <table id="tabelMasuk">
             <thead>
@@ -91,6 +109,7 @@
           </table>
         </div>
 
+        <!-- Kontrol pagination barang masuk -->
         <div class="pagination">
           <button class="page-nav" id="prevPageMasuk" disabled>Sebelumnya</button>
           <div class="page-numbers" id="pageNumbersMasuk"></div>
@@ -99,6 +118,7 @@
       </section>
 
       <!-- ==== TABEL BARANG KELUAR ==== -->
+       <!-- Section tabel menampilkan data barang keluar dengan pagination -->
       <section class="table-section dashboard-table">
         <div class="table-header">
           <h3>Barang Keluar</h3>
@@ -111,6 +131,7 @@
           </div>
         </div>
 
+        <!-- Kontainer tabel barang keluar -->
         <div class="table-container">
           <table id="tabelKeluar">
             <thead>
@@ -125,6 +146,7 @@
           </table>
         </div>
 
+        <!-- Kontrol pagination barang keluar -->
         <div class="pagination">
           <button class="page-nav" id="prevPageKeluar" disabled>Sebelumnya</button>
           <div class="page-numbers" id="pageNumbersKeluar"></div>
@@ -137,12 +159,19 @@
   <script>
     // === PAGINATION BARU (4 awal, 4 akhir, tengah mengikuti page aktif) ===
 function updatePagination(type, totalCount, page, limit) {
+<<<<<<< HEAD
   const totalPages = Math.ceil(totalCount / limit);
+=======
+  // Hitung total halaman
+  const totalPages = Math.ceil(totalCount / limit);
+  // Prefix untuk membedakan tabel Masuk/Keluar
+>>>>>>> 81c1f060e5184fccac150abd8278cedec423077f
   const prefix = type === "Masuk" ? "Masuk" : "Keluar";
   const pageNumbers = document.getElementById(`pageNumbers${prefix}`);
   const prev = document.getElementById(`prevPage${prefix}`);
   const next = document.getElementById(`nextPage${prefix}`);
 
+<<<<<<< HEAD
   pageNumbers.innerHTML = "";
   prev.disabled = page === 1;
   next.disabled = page === totalPages || totalPages === 0;
@@ -152,6 +181,22 @@ function updatePagination(type, totalCount, page, limit) {
 
   const fragment = document.createDocumentFragment();
 
+=======
+  // Bersihkan page numbers sebelumnya
+  pageNumbers.innerHTML = "";
+ // Disable tombol prev/next jika berada di awal/akhir halaman
+  prev.disabled = page === 1;
+  next.disabled = page === totalPages || totalPages === 0;
+
+  // jumlah halaman 
+  const maxStart = 4; 
+  const maxEnd = 4;
+
+  // untuk mencegah duplikasi
+  const fragment = document.createDocumentFragment();
+
+  // Fungsi membuat tombol page number
+>>>>>>> 81c1f060e5184fccac150abd8278cedec423077f
   function createBtn(i) {
     const span = document.createElement("span");
     span.textContent = i;
@@ -291,6 +336,7 @@ function updatePagination(type, totalCount, page, limit) {
   //   updatePagination("Masuk", count, page, limit);
   // }
 
+   // Fungsi loadBarangMasuk: mengambil data barang masuk dan menampilkan di tabel dengan pagination
   async function loadBarangMasuk(page = 1, limit = 5) {
     currentPageMasuk = page;
     rowsPerPageMasuk = limit;
@@ -341,6 +387,7 @@ function updatePagination(type, totalCount, page, limit) {
 
     tabelKeluarBody.innerHTML = `<tr><td colspan="4" style="text-align:center;">Memuat...</td></tr>`;
 
+    // Query Supabase dengan relasi data_barang
     const { data, error, count } = await supabase
       .from("barang_keluar")
       .select("id_barang, tanggal, jumlah_keluar, data_barang(nama_barang, kode_barang)", { count: "exact" })
@@ -368,7 +415,7 @@ function updatePagination(type, totalCount, page, limit) {
           }</td>
         </tr>`;
     });
-
+    // Update pagination
     updatePagination("Keluar", count, page, limit);
   }
 

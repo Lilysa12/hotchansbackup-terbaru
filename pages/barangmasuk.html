@@ -1,18 +1,30 @@
+<!-- Document type HTML -->
 <!DOCTYPE html>
 <html lang="id">
   <head>
+
+
+    <!-- karakter UTF-8 -->
     <meta charset="UTF-8" />
+    <!-- Responsive design -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Judul halaman -->
     <title>Barang Masuk - Hot Chan's Motor</title>
 
+    <!-- Import CSS utama untuk halaman barang masuk -->
     <link rel="stylesheet" href="../assets/css/barangsuka.css" />
 
+    <!-- Optimasi load font Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!--Import font Inter -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    
+    <!-- Import FontAwesome untuk ikon -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -20,12 +32,20 @@
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
   </head>
   <body>
+    
+    <!-- Container utama untuk sidebar dan main-content -->
     <div class="container">
+      <!-- Sidebar navigasi kiri -->
       <nav class="sidebar">
+        
+        <!-- Logo dan menu utama -->
         <div class="nav-top">
+          <!-- nama toko -->
           <h1 class="sidebar-logo">Hot Chan's Motor</h1>
+          <!-- Menu navigasi utama -->
           <ul class="nav-menu">
             <li>
+              <!-- Link ke halaman dashboard -->
               <a href="dashboard.html" class="nav-item">
                 <img
                   src="../assets/gambar/icons/dashboard.png"
@@ -35,6 +55,7 @@
               </a>
             </li>
             <li>
+              <!-- Link ke halaman data barang -->
               <a href="databarang.html" class="nav-item">
                 <img
                   src="../assets/gambar/icons/data barang.png"
@@ -44,6 +65,7 @@
               </a>
             </li>
             <li>
+              <!-- Link ke halaman barang masuk -->
               <a href="barangmasuk.html" class="nav-item">
                 <img
                   src="../assets/gambar/icons/barang masuk.png"
@@ -53,6 +75,7 @@
               </a>
             </li>
             <li>
+               <!-- Link ke halaman barang keluar -->
               <a href="barangkeluar.html" class="nav-item">
                 <img
                   src="../assets/gambar/icons/barang keluar.png"
@@ -63,6 +86,7 @@
             </li>
           </ul>
         </div>
+        <!-- Bagian bawah sidebar untuk menu akun -->
         <div class="nav-bottom">
           <span class="nav-section-title">Akun</span>
           <ul class="nav-menu">
@@ -85,7 +109,9 @@
         </div>
       </nav>
 
+      <!-- konten utama -->
       <main class="main-content">
+        <!-- Header halaman -->
         <header>
           <h2>Pantau Semua Barang Masuk di Satu Tampilan</h2>
           <p>
@@ -94,17 +120,21 @@
           </p>
         </header>
 
+        <!-- Ringkasan jumlah dan tombol aksi -->
         <section class="summary-cards">
           <div class="card card-blue">
             <span>Barang Masuk</span>
+            <!-- Total barang keluar -->
             <span class="number" id="total-barang">0</span>
           </div>
+          <!-- card tombol tambah barang baru -->
           <div class="card card-action">
             <h3>Tambah Barang Baru</h3>
             <button class="btn-primary" id="open-add-modal-baru">
               + Tambah Disini
             </button>
           </div>
+          <!-- card tombol tambah barang -->
           <div class="card card-action">
             <h3>Tambah Barang</h3>
             <button class="btn-primary" id="open-add-modal-lama">
@@ -112,6 +142,7 @@
             </button>
           </div>
           <div class="card card-action">
+            <!-- card tombol cetak -->
             <h3>Cetak Barang</h3>
             <button class="btn-primary" id="open-print-modal">
               <i class="fa-solid fa-print"></i> Cetak Disini
@@ -119,18 +150,22 @@
           </div>
         </section>
 
+        <!-- Tabel utama barang keluar -->
         <section class="table-section">
           <div class="table-header">
             <h3>Barang Masuk</h3>
+            <!-- Kontrol tabel (entries dan search) -->
             <div class="table-controls">
               <div class="show-entries">
                 <span>Lihat</span>
+                <!-- Dropdown jumlah data per halaman -->
                 <select name="rows-per-page" id="rows-per-page">
                   <option value="10">10</option>
                   <option value="25">25</option>
                   <option value="50">50</option>
                 </select>
               </div>
+              <!-- Search bar -->
               <div class="search-bar">
                 <img src="../assets/gambar/icons/cari.png" alt="Cari" />
                 <input type="text" id="searchInput" placeholder="Cari..." />
@@ -138,8 +173,10 @@
             </div>
           </div>
 
+          <!-- Judul laporan saat print -->
           <h2 class="print-title">Laporan Barang Masuk</h2>
 
+          <!-- Container tabel -->
           <div class="table-container">
             <table id="main-table">
               <thead>
@@ -155,17 +192,21 @@
                   <th class="action-col">Aksi</th>
                 </tr>
               </thead>
+              <!-- Data akan diisi oleh JS -->
               <tbody id="table-body"></tbody>
             </table>
           </div>
+          <!-- Kontrol halaman -->
           <div class="pagination" id="pagination-controls">
             </div>
         </section>
       </main>
     </div>
     
+    <!-- Overlay semua modal -->
     <div class="modal-overlay" id="modal-overlay"></div>
     
+    <!-- Modal tambah barang -->
     <div class="modal-content" id="add-modal">
         <span class="close-modal">&times;</span>
         <h2 class="modal-title">
@@ -173,14 +214,18 @@
             Barang Masuk Baru
         </h2>
         <form id="add-form">
-            <div class="form-group full-width">
+          <!-- Pilihan kode barang -->  
+          <div class="form-group full-width">
                 <label for="add-kode">Kode barang</label>
                 <input type="text" id="add-kode" required />
             </div>
+            
+            <!-- Pilihan nama barang -->
             <div class="form-group full-width">
                 <label for="add-nama">Nama Barang</label>
                 <input type="text" id="add-nama" required />
             </div>
+            <!-- Input tanggal -->
             <div class="form-group">
                 <label for="add-tanggal">Tanggal</label>
                 <div class="input-with-icon">
@@ -191,10 +236,14 @@
                     ></i>
                 </div>
             </div>
+            
+            <!-- Input waktu -->
             <div class="form-group">
                 <label for="add-waktu">Waktu</label>
                 <input type="time" id="add-waktu" required />
             </div>
+            
+            <!-- Input harga -->
             <div class="form-group">
                 <label for="add-harga-beli">Harga Beli</label>
                 <input type="number" id="add-harga-beli" required />
@@ -207,16 +256,21 @@
                 <label for="add-merek">Merek</label>
                 <input type="text" id="add-merek" required />
             </div>
+
+            <!-- Input jumlah -->
             <div class="form-group">
                 <label for="add-jumlah">Jumlah</label>
                 <input type="number" id="add-jumlah" required />
             </div>
+            
+            <!-- Tombol submit -->
             <button type="submit" class="btn-primary full-width-btn">
                 + Tambah Disini
             </button>
         </form>
     </div>
 
+    <!-- Modal cetak -->
     <div class="modal-content" id="add-modal-lama">
         <span class="close-modal">&times;</span>
         <h2 class="modal-title">
@@ -232,6 +286,8 @@
             </div>
             <div class="form-group">
                 <label for="add-tanggal">Tanggal</label>
+                
+                <!-- Input bulan dan ikon kalender -->
                 <div class="input-with-icon">
                     <input type="date" id="add-tanggal" required />
                     <i
@@ -240,6 +296,7 @@
                     ></i>
                 </div>
             </div>
+            <!-- Inpu Tambah barang -->
             <div class="form-group">
                 <label for="add-waktu">Waktu</label>
                 <input type="time" id="add-waktu" required />
@@ -266,6 +323,7 @@
         </form>
     </div>
 
+    <!-- Edit data barang -->
     <div class="modal-content" id="edit-modal">
         <span class="close-modal">&times;</span>
         <h2 class="modal-title">
@@ -318,7 +376,7 @@
             </button>
         </form>
     </div>
-
+    <!-- Tombol cetak barang -->
     <div class="modal-content small" id="print-modal">
         <span class="close-modal">&times;</span>
         <h2 class="modal-title">
@@ -327,11 +385,13 @@
         <form id="print-form">
             <div class="form-group full-width">
                 <label for="print-bulan">Bulan</label>
+                <!-- Input bulan dan ikon kalender -->
                 <div class="input-with-icon">
                     <input type="month" id="print-bulan" placeholder="Pilih Bulan" />
                     <i class="fa-solid fa-calendar-days modal-icon"></i>
                 </div>
             </div>
+            <!-- Tombol reset dan submit -->
             <div class="modal-buttons">
                 <button type="reset" class="btn-secondary">Reset</button>
                 <button type="button" class="btn-primary" id="submit-print">
@@ -341,6 +401,7 @@
         </form>
     </div>
 
+    <!-- Modal konfirmasi delete -->
     <div class="modal-content small center" id="delete-modal">
         <h2 class="modal-title">Yakin Mau Hapus?</h2>
         <p>Dengan mengklik hapus, maka data kamu akan hilang</p>
@@ -355,10 +416,12 @@
         </div>
     </div>
 
+    <!-- input tambah dataa barang baru -->
     <div class="modal-content" id="add-modal-baru">
         <span class="close-modal">&times;</span>
         <h2 class="modal-title">Tambah Barang Masuk</h2>
 
+        <!-- pilih barang yang akan ditambah -->
         <div class="modal-content small" id="select-barang-modal">
             <span class="close-modal">&times;</span>
             <h2 class="modal-title">
@@ -378,42 +441,50 @@
             </form>
         </div>
 
+        <!-- Nama barang -->
         <form id="add-form">
             <div class="form-group">
                 <label for="add-nama">Nama Barang</label>
                 <input type="text" id="add-namabarang"required>
             </div>
 
+            <!-- Kode barang -->
             <div class="form-group">
                 <label for="add-kode">Kode Barang</label>
                 <input type="text" id="add-kode" required />
             </div>
 
+            <!-- Merek -->
             <div class="form-group">
                 <label for="add-merek">Merek</label>
                 <input type="text" id="add-merek" required />
             </div>
 
+            <!-- Harga beli -->
             <div class="form-group">
                 <label for="add-harga-beli">Harga Beli</label>
                 <input type="number" id="add-harga-beli" required />
             </div>
 
+            <!-- Harga jual -->
             <div class="form-group">
                 <label for="add-harga-jual">Harga Jual</label>
                 <input type="number" id="add-harga-jual" required />
             </div>
 
+            <!-- jumlah masuk -->
             <div class="form-group">
                 <label for="add-jumlah">Jumlah Masuk</label>
                 <input type="number" id="add-jumlah" required />
             </div>
 
+            <!-- Tanggal -->
             <div class="form-group">
                 <label for="add-tanggal">Tanggal</label>
                 <input type="date" id="add-tanggal" required />
             </div>
 
+            <!-- Waktu -->
             <div class="form-group">
                 <label for="add-waktu">Waktu</label>
                 <input type="time" id="add-waktu" required />
@@ -423,6 +494,7 @@
         </form>
     </div>
 
+    <!-- Pilihan data barang -->
     <div class="modal-content small" id="select-barang-modal">
       <span class="close-modal">&times;</span>
       <h2 class="modal-title"><i class="fa-solid fa-box"></i> Pilih Barang</h2>
@@ -433,6 +505,7 @@
             <option value="">-- Pilih Barang --</option>
           </select>
         </div>
+        <!-- Button batal atau pilih -->
         <div class="modal-buttons">
           <button type="reset" class="btn-secondary">Batal</button>
           <button type="submit" class="btn-primary">Pilih</button>
@@ -440,8 +513,11 @@
       </form>
     </div>
     
+    <!--Import Supabase JS -->
     <script src="../assets/js/barangsuka.js"></script>
+    <!--API untuk barang keluar -->
     <script src="../api/barangMasuk.js"></script>
+    <!--Script utama untuk halaman ini -->
     <script src="../index.js"></script>
   </body>
 </html>

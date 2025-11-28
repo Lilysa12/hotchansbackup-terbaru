@@ -1,6 +1,4 @@
-/* ==================================== */
-/* 1. GLOBAL & RESET */
-/* ==================================== */
+/* Reset margin/padding dan atur box-sizing untuk semua elemen, serta set font global */
 * {
   margin: 0;
   padding: 0;
@@ -8,6 +6,7 @@
   font-family: "Poppins", "Inter", sans-serif;
 }
 
+/* Atur layout body: flex untuk sidebar + content, lebar penuh, tinggi minimal viewport */
 body {
   display: flex;
   width: 100%;
@@ -16,10 +15,7 @@ body {
   color: #333;
 }
 
-/* ==================================== */
-/* 2. SIDEBAR */
-/* ==================================== */
-/* ==== SIDEBAR ==== */
+/* Sidebar kiri tetap, full height, background biru, warna teks putih */
 .sidebar {
   width: 230px;
   background: #1f6eff;
@@ -28,13 +24,13 @@ body {
   flex-direction: column;
   padding: 20px;
   flex-shrink: 0;
-  min-height: 100dvh; /* sudah benar */
+  min-height: 100dvh; 
   position: fixed;
   left: 0;
   top: 0;
 }
 
-/* Logo */
+/* Logo di sidebar */
 .sidebar-logo {
   font-weight: 700;
   font-size: 18px;
@@ -42,7 +38,7 @@ body {
   padding-left: 10px;
 }
 
-/* Navigasi */
+/* Menu navigasi sidebar */
 .nav-menu {
   list-style: none;
   padding: 0;
@@ -53,6 +49,8 @@ body {
   margin-bottom: 15px;
 }
 
+
+/* Item menu individual: flex, hover effect, pointer cursor */
 .nav-item {
   display: flex;
   align-items: center;
@@ -65,16 +63,19 @@ body {
   font-weight: 400; /* tambahkan agar konsisten */
 }
 
+/* Hover effect menu */
 .nav-item:hover {
   background: rgba(255, 255, 255, 0.1);
 }
 
+/* Ikon pada menu */
 .nav-item img {
   width: 18px;
   margin-right: 10px;
   filter: brightness(0) invert(1);
 }
 
+/* Menu aktif: highlight putih + teks biru */
 .nav-item.active {
   background: #fff;
   color: #1f6eff;
@@ -89,7 +90,7 @@ body {
   filter: none;
 }
 
-/* Bagian bawah sidebar */
+/* Bagian bawah sidebar (misal: logout) */
 .nav-bottom {
   margin-top: 30px;
 }
@@ -104,15 +105,14 @@ body {
 }
 
 
-/* ==================================== */
-/* 3. MAIN CONTENT (Tidak berubah) */
-/* ==================================== */
+/* Konten utama: margin sesuai sidebar, padding dan scroll vertical */
 .main-content {
   margin-left: 230px;
   flex: 1;
   padding: 30px 40px;
   overflow-y: auto;
 }
+/* Wrapper isi konten: putih, rounded, shadow ringan */
 .content-wrapper {
   background: #ffffff;
   border-radius: 10px;
@@ -120,51 +120,52 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-/* ==================================== */
-/* 3.1. WELCOME SECTION (Tidak berubah) */
-/* ==================================== */
+/* Section selamat datang */
 .welcome-section {
   margin-bottom: 25px;
   padding-left: 5px;
 }
+/* Judul welcome */
 .welcome-section h1 {
-  color: #4179F5; /* Warna biru */
+  color: #4179F5; 
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 8px;
 }
+/* Subjudul welcome */
 .welcome-section p {
   color: #888;
   font-size: 16px;
   font-weight: 400;
 }
 
-/* ==================================== */
-/* 4. TABLE SECTION (Tidak berubah) */
-/* ==================================== */
+/* Header tabel: judul + controls */
 .table-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
 }
+/* Judul tabel */
 .table-header h3 {
   margin: 0;
   font-weight: 600;
   font-size: 20px;
-  color: #4179F5; /* Warna biru */
+  color: #4179F5; 
 }
+/* Controls header (lihat/entries + search) */
 .header-controls {
   display: flex;
   align-items: center;
   gap: 15px;
 }
+/* Dropdown untuk jumlah entri */
 .lihat-box {
   display: flex;
   align-items: center;
   gap: 8px;
   font-size: 14px;
-  color: #4179F5; /* Warna biru */
+  color: #4179F5;
 }
 .lihat-box select {
   border: 1px solid #ddd;
@@ -172,11 +173,12 @@ body {
   padding: 6px 8px;
   font-size: 14px;
   font-weight: 500;
-  color: #4179F5; /* Warna biru */
+  color: #4179F5; 
   cursor: pointer;
   outline: none;
   background-color: #fdfdfd;
 }
+/* Search box */
 .search-box {
   display: flex;
   align-items: center;
@@ -205,9 +207,7 @@ body {
   color: #aaa;
 }
 
-/* ==================================== */
-/* 4.1. DATA TABLE (Tidak berubah) */
-/* ==================================== */
+/* Wrapper tabel: scroll horizontal */
 .table-container {
   width: 100%;
   overflow-x: auto;
@@ -215,11 +215,13 @@ body {
   border-radius: 8px;
   min-height: 400px; 
 }
+/* Table actual */
 .data-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 15px;
 }
+/* Header tabel */
 .data-table thead {
   background-color: #f9fafb;
 }
@@ -234,6 +236,7 @@ body {
   letter-spacing: 0.5px;
   white-space: nowrap;
 }
+/* Data sel */
 .data-table td {
   padding: 14px 18px;
   border-bottom: 1px solid #eef0f2;
@@ -246,6 +249,7 @@ body {
 .data-table tbody tr:last-child td {
   border-bottom: none;
 }
+/* Highlight tanggal */
 span.date-highlight {
   background-color: #f5f5f5;
   border-radius: 6px;
@@ -254,6 +258,7 @@ span.date-highlight {
   font-size: 13px;
   font-weight: 500;
 }
+/* Tombol aksi di tabel */
 .aksi button {
   background: transparent;
   border: none;
@@ -266,7 +271,7 @@ span.date-highlight {
 .aksi button:hover {
   background-color: #f0f0f0;
 }
-
+/* Ikon aksi */
 .aksi img {
   width: 16px;
   height: 16px;
@@ -278,9 +283,7 @@ span.date-highlight {
   opacity: 1;
 }
 
-/* ==================================== */
-/* 5. PAGINATION (Tidak berubah) */
-/* ==================================== */
+/* PAGINATION  */
 .pagination {
   display: flex;
   justify-content: space-between;
@@ -291,6 +294,7 @@ span.date-highlight {
   font-size: 14px;
   color: #555;
 }
+/* Tombol navigasi halaman */
 .page-nav {
   border: 1px solid #ddd;
   background-color: #fff;
@@ -310,6 +314,7 @@ span.date-highlight {
   cursor: not-allowed;
   background-color: #f9f9f9;
 }
+/* Nomor halaman */
 .page-numbers {
   display: flex;
   gap: 8px;
@@ -334,9 +339,8 @@ span.date-highlight {
   font-weight: 600;
 }
 
-/* ==================================== */
-/* 6. MODAL (Tidak berubah) */
-/* ==================================== */
+/* MODAL */
+/* Overlay modal */
 #modal-overlay {
   position: fixed;
   top: 0;
@@ -347,6 +351,7 @@ span.date-highlight {
   z-index: 999;
   transition: opacity 0.3s ease;
 }
+/* Konten modal */
 .modal {
   position: fixed;
   top: 50%;
@@ -361,10 +366,12 @@ span.date-highlight {
   overflow: hidden;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
+/* Hidden state modal */
 .modal.hidden,
 #modal-overlay.hidden {
   display: none;
 }
+/* Konten internal modal */
 .modal-content {
   padding: 24px 30px;
 }
@@ -380,6 +387,7 @@ span.date-highlight {
   color: #555;
   margin-bottom: 24px;
 }
+/* Form di modal */
 #editForm label {
   display: block;
   font-size: 14px;
@@ -400,6 +408,7 @@ span.date-highlight {
   background: #eee;
   cursor: not-allowed;
 }
+/* Tombol aksi modal */
 .modal-actions {
   display: flex;
   gap: 12px;

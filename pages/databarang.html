@@ -1,45 +1,62 @@
+<!-- Document type HTML -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
+  <!-- karakter UTF-8 -->
   <meta charset="UTF-8">
+  <!-- Responsive design -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Judul halaman -->
   <title>Dashboard Data Barang</title>
   
+  <!-- Import CSS utama untuk halaman databarang -->
   <link rel="stylesheet" href="../assets/css/databarang.css">
   
+  <!--Import Supabase JS -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
+  <!-- Sidebar navigasi utama -->
   <div class="sidebar">
+    <!-- Sidebar navigasi utama -->
     <div class="sidebar-logo">Hot Chan’s Motor</div>
     
+    <!-- Menu navigasi utama -->
     <ul class="nav-menu">
+      <!-- Link ke dashboard -->
       <li><a href="dashboard.html" class="nav-item">
         <img src="../assets/gambar/icons/dashboard.png" alt="Dashboard">
         <span>Dashboard</span>
       </a></li>
+      <!-- Link ke halaman data barang, diberi class active karena halaman saat ini -->
       <li><a href="databarang.html" class="nav-item active">
         <img src="../assets/gambar/icons/data barang.png" alt="Data Barang">
         <span>Data Barang</span>
       </a></li>
+      <!-- Link ke halaman barang masuk -->
       <li><a href="barangmasuk.html" class="nav-item">
         <img src="../assets/gambar/icons/barang masuk.png" alt="Barang Masuk">
         <span>Barang Masuk</span>
       </a></li>
+      <!-- Link ke halaman barang keluar -->
       <li><a href="barangkeluar.html" class="nav-item">
         <img src="../assets/gambar/icons/barang keluar.png" alt="Barang Keluar">
         <span>Barang Keluar</span>
       </a></li>
     </ul>
     
+    <!-- Bagian bawah sidebar untuk akun -->
     <div class="nav-bottom">
       <span class="nav-section-title">Akun</span>
       <ul class="nav-menu">
+        <!-- Link ke halaman tentang kami -->
         <li><a href="tentangkami.html" class="nav-item">
           <img src="../assets/gambar/icons/kelola toko.png" alt="Tentang Kami">
           <span>Tentang Kami</span>
         </a></li>
+        <!-- Link ke halaman profil pengguna -->
         <li><a href="profile.html" class="nav-item">
           <img src="../assets/gambar/icons/profile.png" alt="Profile">
           <span>Profile</span>
@@ -48,18 +65,23 @@
     </div>
   </div>
 
+  <!-- Bagian utama konten halaman -->
   <div class="main-content">
     
+    <!-- Bagian sambutan pengguna di halaman dashboard -->
     <div class="welcome-section">
       <h1>Selamat Datang di Sistem Manajemen Barang Hot Chan's Motor</h1>
       <p>Satu tempat untuk memastikan semua data barang Anda selalu akurat dan terorganisir.</p>
     </div>
 
+    <!-- Wrapper konten utama -->
     <div class="content-wrapper">
       
+       <!-- Header tabel data barang, termasuk kontrol lihat dan pencarian -->
       <div class="table-header">
         <h3>Data Barang</h3>
         <div class="header-controls">
+          <!-- Kontrol jumlah data yang ditampilkan per halaman -->
           <div class="lihat-box">
             <span>Lihat</span>
             <select id="limitSelect">
@@ -68,6 +90,7 @@
               <option value="50">50</option>
             </select>
           </div>
+          <!-- Kotak pencarian untuk mencari nama barang -->
           <div class="search-box">
             <img src="../assets/gambar/icons/cari.png" alt="Cari">
             <input type="text" id="searchInput" placeholder="Cari nama barang...">
@@ -75,8 +98,10 @@
         </div>
       </div>
 
+      <!-- Container tabel untuk data barang -->
       <div class="table-container">
         <table class="data-table">
+          <!-- Header tabel yang mendefinisikan kolom -->
           <thead>
             <tr>
               <th>Kode</th>
@@ -89,12 +114,14 @@
               <th>Aksi</th>
             </tr>
           </thead>
+          <!-- Body tabel di mana data akan dimuat secara dinamis dengan JS -->
           <tbody id="dataTableBody">
             <tr><td colspan="8" style="text-align:center; padding: 20px;">Memuat data...</td></tr>
           </tbody>
         </table>
       </div>
 
+      <!-- Pagination untuk navigasi antar halaman data -->
       <div class="pagination">
         <button class="page-nav" id="prevPage" disabled>Sebelumnya</button>
         <div class="page-numbers" id="pageNumbers">
@@ -102,10 +129,14 @@
         <button class="page-nav" id="nextPage">Selanjutnya</button>
       </div>
 
+    <!-- Overlay modal untuk edit dan delete -->
     </div> </div> <div id="modal-overlay" class="hidden"></div>
-  <div id="edit-modal" class="modal hidden">
+    <!-- Modal edit barang -->
+    <div id="edit-modal" class="modal hidden">
     <div class="modal-content">
       <h2>Edit Barang</h2>
+
+      <!-- Form edit barang -->
       <form id="editForm">
         <label>Kode Barang</label>
         <input type="text" id="editKode" readonly>
@@ -126,6 +157,8 @@
       </form>
     </div>
   </div>
+  
+  <!-- Modal konfirmasi hapus barang -->
   <div id="delete-modal" class="modal hidden">
     <div class="modal-content">
       <h2>Hapus Barang</h2>
@@ -137,7 +170,9 @@
     </div>
   </div>
 
+  <!--Script utama untuk halaman ini -->
   <script src="../assets/js/databarang.js"></script>
+  <!-- Mengimpor script API untuk memanggil data barang dari Supabase -->
   <script src="../api/dataBarang.js"></script>
 </body>
 </html>

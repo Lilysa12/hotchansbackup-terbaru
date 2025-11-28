@@ -1,15 +1,24 @@
+<!-- Document type HTML -->
 <!DOCTYPE html>
 <html lang="id">
 
 <head>
+
+    <!-- karakter UTF-8 -->
     <meta charset="UTF-8">
+    <!-- Responsive design -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Judul halaman -->
     <title>Profile - Hot Chan's Motor</title>
 
+    <!-- Import CSS utama untuk halaman profile -->
     <link rel="stylesheet" href="../assets/css/profile.css">
 
+    <!-- Optimasi load font Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!--Import font Inter -->
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
         rel="stylesheet">
@@ -17,29 +26,37 @@
 
 <body>
 
+    <!-- Container utama halaman profile -->
     <div class="container">
 
+        <!-- Sidebar navigasi utama -->
         <nav class="sidebar">
+            <!-- Bagian atas sidebar -->
             <div class="nav-top">
+                <!-- Logo/Brand sidebar -->
                 <h1 class="sidebar-logo">Hot Chan’s Motor</h1>
                 <ul class="nav-menu">
+                    <!-- Link Dashboard -->
                     <li>
                         <a href="dashboard.html" class="nav-item">
                             <img src="../assets/gambar/icons/dashboard.png" alt="Dashboard"> <span>Dashboard</span>
                         </a>
                     </li>
+                    <!-- Link Data Barang -->
                     <li>
                         <a href="databarang.html" class="nav-item">
                             <img src="../assets/gambar/icons/data barang.png" alt="Data Barang"> <span>Data
                                 Barang</span>
                         </a>
                     </li>
+                    <!-- Link Barang Masuk -->
                     <li>
                         <a href="barangmasuk.html" class="nav-item">
                             <img src="../assets/gambar/icons/barang masuk.png" alt="Barang Masuk"> <span>Barang
                                 Masuk</span>
                         </a>
                     </li>
+                    <!-- Link Barang Keluar -->
                     <li>
                         <a href="barangkeluar.html" class="nav-item">
                             <img src="../assets/gambar/icons/barang keluar.png" alt="Barang Keluar"> <span>Barang
@@ -48,15 +65,19 @@
                     </li>
                 </ul>
             </div>
+            
+            <!-- Bagian bawah sidebar untuk akun -->
             <div class="nav-bottom">
                 <span class="nav-section-title">Akun</span>
                 <ul class="nav-menu">
+                    <!-- Link Tentang Kami -->
                     <li>
                         <a href="tentangkami.html" class="nav-item">
                             <img src="../assets/gambar/icons/kelola toko.png" alt="Tentang Kami"> <span>Tentang
                                 Kami</span>
                         </a>
                     </li>
+                    <!-- Link Profile (aktif saat ini) -->
                     <li>
                         <a href="profile.html" class="nav-item active">
                             <img src="../assets/gambar/icons/profile.png" alt="Profile"> <span>Profile</span>
@@ -66,9 +87,11 @@
             </div>
         </nav>
 
+        <!-- Konten utama halaman profile -->
         <main class="main-content">
 
             <div class="profile-layout">
+                <!-- Menu pengaturan profil -->
                 <div class="settings-menu">
                     <h1 class="settings-title">Profil Saya</h1>
                     <ul>
@@ -76,12 +99,15 @@
                         <li><a href="#" id="notif-btn">Notifikasi</a></li>
 
                     </ul>
+                    <!-- Tombol logout -->
                     <a href="#" class="logout-btn" id="logout-btn">
                         <img src="../assets/gambar/icons/keluar.png" class="logout-icon" alt="Logout"> Keluar
                     </a>
                 </div>
 
+                <!-- Detail Profil -->
                 <div class="profile-details">
+                    <!-- Kartu Profil Admin -->
                     <div class="card">
                         <div class="card-header blue-header">
                             <h3>Profil Saya</h3>
@@ -96,6 +122,8 @@
                         </div>
                     </div>
 
+                    
+                    <!-- Kartu Informasi Pribadi -->
                     <div class="card">
                         <div class="card-header">
                             <h3>Informasi Pribadi</h3>
@@ -124,6 +152,8 @@
                         </div>
                     </div>
 
+                    
+                    <!-- Kartu Alamat -->
                     <div class="card">
                         <div class="card-header">
                             <h3>Alamat</h3>
@@ -222,7 +252,7 @@
                         <div class="notif-section">
                             <h4>Hari Ini</h4>
 
-                            <!-- NOTIF 1 -->
+                            <!-- Notifikasi Stok Barang Menipis -->
                             <div class="notif-item highlight">
                                 <div class="notif-icon-circle time">
                                     <span>⚠️</span>
@@ -239,7 +269,7 @@
                                 </div>
                             </div>
 
-                            <!-- NOTIF 2 -->
+                            <!-- Notifikasi Barang Masuk -->
                             <div class="notif-item">
                                 <div class="notif-icon-circle money">
                                     <span>📥</span>
@@ -255,7 +285,7 @@
                                 </div>
                             </div>
 
-                            <!-- NOTIF 3 -->
+                            <!-- Notifikasi Pembaruan Data -->
                             <div class="notif-item">
                                 <div class="notif-icon-circle house">
                                     <span>🏠</span>
@@ -280,6 +310,7 @@
 
             </div>
 
+            <!-- Popup Notifikasi tambahan -->
             <div id="popupNotifikasi" class="popup hidden">
                 <div class="popup-content" <div class="popup-header">
                     <h2>Notifikasi</h2>
@@ -303,7 +334,9 @@
     </div>
     </div>
 
+    <!-- Script untuk halaman profile (frontend interaktif) -->
     <script src="../assets/js/profile.js"></script>
+    <!-- Script backend login -->
     <script src="../backend/login.js"></script>
     <script src="../api/backend/login.js"></script>
 

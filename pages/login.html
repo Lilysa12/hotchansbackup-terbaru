@@ -1,42 +1,65 @@
+<!-- Document type HTML -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
+    <!-- karakter UTF-8 -->
     <meta charset="UTF-8" />
+    <!-- Responsive design -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Judul halaman -->
     <title>Hot Chan’s Motor | Login</title>
     
+    <!-- Import CSS utama untuk halaman login -->
     <link rel="stylesheet" href="../assets/css/login.css" />
     
+    <!-- Optimasi load font Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!--Import font Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
+    <!-- Import FontAwesome untuk ikon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 </head>
 <body class="login-page">
 
+    <!-- Container utama halaman login yang membagi layout kiri dan kanan -->
     <div class="login-container"> 
+        <!-- Bagian kiri berisi form login -->
         <div class="left-section">
             <div id="login-page" class="page">
+
+                <!-- Logo atau judul halaman -->
                 <div class="logo">Hot Chan’s Motor</div>
+                <!-- Judul sambutan -->
                 <h1>Holla,<br>Selamat Datang!</h1>
+                <!-- Subtitle halaman login -->
                 <p class="subtitle">Rekap Datamu</p>
 
+               <!-- Form login dengan method default (JS akan menangani submit) -->
                 <form id="login-form">
+                   
+                   <!-- Label dan input untuk username -->
                     <label for="login-email">Username</label>
                     <input type="text" id="login-email" placeholder="hotchans" required />
 
+                    <!-- Label dan input untuk password -->
                     <label for="login-password">Password</label>
                     <input type="password" id="login-password" placeholder="********" required />
 
+                    <!-- Link lupa password -->
                     <a href="lupapw.html" class="link">Lupa Password?</a>
+                    <!-- Tombol submit login -->
                     <button type="submit" class="btn-primary">Login</button>
                 </form>
 
+                <!-- Footer halaman login -->
                 <footer>© 2025 Hot Chan’s Motor. All rights reserved.</footer>
             </div>
         </div>
 
+        <!-- Bagian kanan menampilkan ilustrasi login -->
         <div class="right-section">
             <img src="../assets/gambar/login/gambar 1.png" alt="Ilustrasi Login" id="illustration"> 
         </div>

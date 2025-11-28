@@ -1,6 +1,7 @@
-/* PENGATURAN GLOBAL */
+/* Import font Poppins dari Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
+/* Reset dan pengaturan dasar untuk html dan body */
 html, body {
     height: 100%;
     width: 100%;
@@ -10,10 +11,12 @@ html, body {
     overflow-x: hidden; 
 }
 
+/* Box-sizing inherit untuk semua elemen dan pseudo-element */
 *, *::before, *::after {
     box-sizing: inherit;
 }
 
+/* Styling dasar body */
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #f0f2f5; 
@@ -23,7 +26,7 @@ body {
     min-height: 100vh; 
 }
 
-/* CONTAINER UTAMA (Wrapper 50/50, Full Height) */
+/* Container utama: membagi layout kiri-kanan */
 .container {
     display: flex;
     width: 100vw; 
@@ -33,44 +36,44 @@ body {
     box-shadow: none; 
 }
 
-/* Bagian Formulir (Kiri) */
+/* Panel kiri untuk form login/reset */
 .form-section {
     width: 50%;
     padding: 40px; 
     display: flex;
     flex-direction: column;
-    /* ⭐ PENTING: Tengahkan semua konten secara vertikal (untuk tampilan rapat) */
+
     justify-content: center; 
     align-items: center; 
 }
 
-/* Wrapper Konten */
+/* Wrapper konten di dalam form */
 .content-wrapper {
     display: flex;
     flex-direction: column;
-    /* Hapus height: 100% agar konten berkumpul rapat */
+    
     height: auto; 
     width: 100%;
-    /* Lebar maksimum area konten disesuaikan */
+    
     max-width: 450px; 
     
     justify-content: flex-start;
     align-items: flex-start; 
 }
 
-/* Logo (Grup Atas) */
+/* Logo/brand atas form */
 .brand-name {
-    /* Ukuran font diperbesar */
+    
     font-size: 1.4em; 
     font-weight: 600;
     color: #333;
     margin: 0; 
     padding: 0;
-    /* Jarak Brand Name ke Judul Utama */
+    /* Jarak ke judul utama */
     margin-bottom: 50px; 
 }
 
-/* Konten Utama (Grup Tengah) */
+/* Konten utama form: judul dan subtitle */
 .main-content { 
     width: 100%;
     margin: 0; 
@@ -101,6 +104,7 @@ body {
     text-align: left; 
 }
 
+/* Label input */
 .form-group label {
     display: block;
     font-weight: 600;
@@ -109,6 +113,7 @@ body {
     font-size: 1em;
 }
 
+/* Input email */
 .form-group input[type="email"] {
     width: 100%;
     padding: 12px 15px; 
@@ -116,10 +121,11 @@ body {
     border-radius: 5px;
     box-sizing: border-box;
     font-size: 1em;
-    /* ⭐ PENTING: Lebar input disesuaikan */
+    
     max-width: 350px; 
 }
 
+/* Tombol utama */
 .btn-primary {
     width: 100%;
     padding: 15px;
@@ -131,13 +137,13 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s;
-    /* ⭐ PENTING: Lebar tombol disesuaikan */
+    
     max-width: 350px; 
     margin-top: 5px; 
     margin-bottom: 0; 
 }
 
-/* Konten Bawah (Grup Paling Bawah) */
+/* Wrapper konten bawah (link, copyright) */
 .bottom-content {
     width: 100%;
     display: flex;
@@ -148,6 +154,7 @@ body {
     padding-bottom: 0; 
 }
 
+/* Link kembali ke login */
 .back-to-login {
     display: block;
     margin-top: 0; 
@@ -161,6 +168,7 @@ body {
     text-align: left; 
 }
 
+/* Copyright */
 .copyright {
     font-size: 0.8em;
     color: #aaa;
@@ -173,7 +181,7 @@ body {
     margin-left: 0;
 }
 
-/* Bagian Gambar (Kanan) */
+/* Panel kanan untuk ilustrasi */
 .image-section {
     width: 50%;
     background: linear-gradient(135deg, #6BCBFF 0%, #4388FF 100%); 
@@ -185,6 +193,7 @@ body {
     border-bottom-right-radius: 0;
 }
 
+/* Gambar ilustrasi */
 .illustration-image {
     max-width: 90%; 
     height: auto;
@@ -210,6 +219,7 @@ body {
     .content-wrapper {
         max-width: 100%; 
     }
+    /* Pastikan teks tetap rata kiri */
     .main-content, .bottom-content, .brand-name {
         align-items: flex-start;
         text-align: left; 

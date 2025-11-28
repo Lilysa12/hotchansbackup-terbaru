@@ -1,41 +1,69 @@
+<!-- Document type HTML -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
+     
+    <!-- karakter UTF-8 -->
     <meta charset="UTF-8" />
+    <!-- Responsive design -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Judul halaman -->
     <title>Barang Keluar - Hot Chan's Motor</title>
 
+    <!-- Import CSS utama untuk halaman barang keluar -->
     <link rel="stylesheet" href="../assets/css/barangkeluar.css" />
+
+    <!-- Optimasi load font Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!--Import font Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Import FontAwesome untuk ikon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 </head>
 <body>
+    <!-- Container utama untuk sidebar dan main-content -->
     <div class="container">
+
+        <!-- Sidebar navigasi kiri -->
         <nav class="sidebar">
+
+            <!-- Logo dan menu utama -->
             <div class="nav-top">
+                <!-- nama toko -->
                 <h1 class="sidebar-logo">Hot Chan's Motor</h1>
+
+                <!-- Menu navigasi utama -->
                 <ul class="nav-menu">
                     <li>
+                        <!-- Link ke halaman dashboard -->
                         <a href="dashboard.html" class="nav-item">
                             <img src="../assets/gambar/icons/dashboard.png" alt="Dashboard" />
                             <span>Dashboard</span>
                         </a>
                     </li>
+
                     <li>
+                        <!-- Link ke halaman data barang -->
                         <a href="databarang.html" class="nav-item">
                             <img src="../assets/gambar/icons/data barang.png" alt="Data Barang" />
                             <span>Data Barang</span>
                         </a>
                     </li>
+
                     <li>
+                        <!-- Link ke halaman barang masuk -->
                         <a href="barangmasuk.html" class="nav-item">
                             <img src="../assets/gambar/icons/barang masuk.png" alt="Barang Masuk" />
                             <span>Barang Masuk</span>
                         </a>
                     </li>
+
                     <li>
+                        <!-- Link ke halaman barang keluar -->
                         <a href="barangkeluar.html" class="nav-item active">
                             <img src="../assets/gambar/icons/barang keluar.png" alt="Barang Keluar" />
                             <span>Barang Keluar</span>
@@ -44,6 +72,7 @@
                 </ul>
             </div>
 
+            <!-- Bagian bawah sidebar untuk menu akun -->
             <div class="nav-bottom">
                 <span class="nav-section-title">Akun</span>
                 <ul class="nav-menu">
@@ -53,6 +82,7 @@
                             <span>Tentang Kami</span>
                         </a>
                     </li>
+
                     <li>
                         <a href="profile.html" class="nav-item">
                             <img src="../assets/gambar/icons/profile.png" alt="Profile" />
@@ -63,23 +93,30 @@
             </div>
         </nav>
 
+        <!-- konten utama -->
         <main class="main-content">
+
+            <!-- Header halaman -->
             <header>
                 <h2>Pantau Semua Barang Keluar di Satu Tampilan</h2>
                 <p>Pastikan setiap suku cadang dan perlengkapan tercatat rapi agar stok selalu terkontrol.</p>
             </header>
 
+            <!-- Ringkasan jumlah dan tombol aksi -->
             <section class="summary-cards">
                 <div class="card card-blue">
                     <span>Barang Keluar</span>
+                    <!-- Total barang keluar -->
                     <span class="number" id="total-barang">0</span>
                 </div>
 
+                <!-- card tombol tambah -->
                 <div class="card card-action">
                     <h3>Tambah Barang</h3>
                     <button class="btn-primary" id="open-add-modal">+ Tambah Disini</button>
                 </div>
 
+                <!-- card tombol cetak -->
                 <div class="card card-action">
                     <h3>Cetak Barang</h3>
                     <button class="btn-primary" id="open-print-modal">
@@ -88,12 +125,16 @@
                 </div>
             </section>
 
+            <!-- Tabel utama barang keluar -->
             <section class="table-section">
                 <div class="table-header">
                     <h3>Barang Keluar</h3>
+
+                    <!-- Kontrol tabel (entries dan search) -->
                     <div class="table-controls">
                         <div class="show-entries">
                             <span>Lihat</span>
+                            <!-- Dropdown jumlah data per halaman -->
                             <select name="rows-per-page" id="rows-per-page">
                                 <option value="10">10</option>
                                 <option value="25">25</option>
@@ -101,6 +142,7 @@
                             </select>
                         </div>
 
+                        <!-- Search bar -->
                         <div class="search-bar">
                             <img src="../assets/gambar/icons/cari.png" alt="Cari" />
                             <input type="text" id="searchInput" placeholder="Cari..." />
@@ -108,8 +150,10 @@
                     </div>
                 </div>
 
+                <!-- Judul laporan saat print -->
                 <h2 class="print-title">Laporan Barang Keluar</h2>
 
+                <!-- Container tabel -->
                 <div class="table-container">
                     <table id="main-table">
                         <thead>
@@ -123,21 +167,28 @@
                             </tr>
                         </thead>
                         <tbody id="table-body">
+                            <!-- Data akan diisi oleh JS -->
                             </tbody>
                     </table>
                 </div>
 
+                <!-- Kontrol pagination -->
                 <div class="pagination" id="pagination-controls">
                     </div>
             </section>
         </main>
     </div>
 
+    <!-- Overlay semua modal -->
     <div class="modal-overlay" id="modal-overlay" aria-hidden="true">
+
+        <!-- Modal tambah barang -->
         <div class="modal-content" id="add-modal" role="dialog" aria-modal="true" aria-labelledby="add-modal-title">
             <span class="close-modal" aria-label="Tutup">&times;</span>
             <h2 class="modal-title" id="add-modal-title"><i class="fa-solid fa-plus-circle"></i> Tambah Barang Keluar</h2>
+
             <form id="add-form">
+                <!-- Pilihan kode barang -->
                 <div class="form-group full-width">
                     <label for="add-kode">Kode Barang</label>
                     <select id="add-kode" required>
@@ -145,6 +196,7 @@
                     </select>
                 </div>
 
+                <!-- Pilihan nama barang -->
                 <div class="form-group full-width">
                     <label for="add-nama">Nama Barang</label>
                     <select id="add-nama" required>
@@ -152,37 +204,46 @@
                     </select>
                 </div>
 
+                <!-- Input tanggal -->
                 <div class="form-group">
                     <label for="add-tanggal">Tanggal</label>
                     <input type="date" id="add-tanggal" required />
                 </div>
 
+                <!-- Input waktu -->
                 <div class="form-group">
                     <label for="add-waktu">Waktu</label>
                     <input type="time" id="add-waktu" required />
                 </div>
 
+                <!-- Input jumlah -->
                 <div class="form-group">
                     <label for="add-jumlah">Jumlah Keluar</label>
                     <input type="number" id="add-jumlah" required min="1" />
                 </div>
 
+                <!-- Tombol submit -->
                 <button type="submit" class="btn-primary full-width-btn">+ Tambah Disini</button>
             </form>
         </div>
 
+        <!-- Modal cetak -->
         <div class="modal-content" id="print-modal" role="dialog" aria-modal="true" aria-labelledby="print-modal-title">
             <span class="close-modal" aria-label="Tutup">&times;</span>
             <h2 class="modal-title" id="print-modal-title"><i class="fa-solid fa-print"></i> Cetak Barang Keluar</h2>
+
             <form id="print-form">
                 <div class="form-group full-width">
                     <label for="print-bulan">Bulan</label>
+
+                    <!-- Input bulan dan ikon kalender -->
                     <div class="input-with-icon">
                         <input type="month" id="print-bulan" />
                         <i class="fa-solid fa-calendar-days" id="print-bulan-icon" style="cursor:pointer;"></i>
                     </div>
                 </div>
 
+                <!-- Tombol reset dan submit -->
                 <div class="form-actions-row">
                     <button type="button" class="btn-secondary" id="reset-print">Reset</button>
                     <button type="submit" class="btn-primary" id="submit-print">Cetak</button>
@@ -190,6 +251,7 @@
             </form>
         </div>
 
+        <!-- Modal edit barang -->
         <div class="modal-content" id="edit-modal" role="dialog" aria-modal="true" aria-labelledby="edit-modal-title">
             <span class="close-modal" aria-label="Tutup">&times;</span>
             <h2 class="modal-title" id="edit-modal-title">
@@ -198,17 +260,22 @@
             </h2>
 
             <form id="edit-form">
+                <!-- Field hidden ID -->
                 <input type="hidden" id="edit-id" />
+
+                <!-- Kode barang (readonly) -->
                 <div class="form-group full-width">
                     <label for="edit-kode">Kode barang</label>
                     <input type="text" id="edit-kode" readonly />
                 </div>
 
+                <!-- Nama barang -->
                 <div class="form-group full-width">
                     <label for="edit-nama">Nama Barang</label>
                     <input type="text" id="edit-nama" />
                 </div>
 
+                <!-- Tanggal -->
                 <div class="form-group">
                     <label for="edit-tanggal">Tanggal</label>
                     <div class="input-with-icon">
@@ -217,23 +284,28 @@
                     </div>
                 </div>
 
+                <!-- Waktu -->
                 <div class="form-group">
                     <label for="edit-waktu">Waktu</label>
                     <input type="time" id="edit-waktu" />
                 </div>
 
+                <!-- Jumlah barang keluar -->
                 <div class="form-group full-width">
                     <label for="edit-jumlah">Jumlah Keluar</label>
                     <input type="number" id="edit-jumlah" min="1" />
                 </div>
 
+                <!--Tombol simpan -->
                 <button type="submit" class="btn-primary full-width-btn" id="save-edit"># Simpan Perubahan</button>
             </form>
         </div>
 
+        <!-- Modal konfirmasi delete -->
         <div class="modal-content delete-confirm-modal" id="delete-modal" role="dialog" aria-modal="true" aria-labelledby="delete-modal-title">
             <h2 class="modal-title delete-title" id="delete-modal-title">Yakin Mau Hapus?</h2>
             <p class="delete-message">Dengan mengklik hapus, maka data kamu akan hilang</p>
+
             <div class="form-actions-row">
                 <button type="button" class="btn-secondary" id="cancel-delete">Batal</button>
                 <button type="button" class="btn-primary btn-delete-red" id="confirm-delete" data-id="">Hapus</button>
@@ -241,8 +313,11 @@
         </div>
     </div>
 
+    <!--Import Supabase JS -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!--API untuk barang keluar -->
     <script src="../api/barangKeluar.js"></script>
+    <!--Script utama untuk halaman ini -->
     <script src="../assets/js/barangkeluar.js"></script>
 </body>
 </html>

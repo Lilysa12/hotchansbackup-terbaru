@@ -1,6 +1,4 @@
-/* ==================================== */
-/* 1. GLOBAL & RESET */
-/* ==================================== */
+/* Reset margin, padding, box-sizing, dan font default untuk seluruh elemen */
 * {
     margin: 0;
     padding: 0;
@@ -8,32 +6,33 @@
     font-family: "Inter", sans-serif;
 }
 
+/* Style utama body */
 body {
     background-color: #f7f9fc;
     height: 100vh;
     overflow-y: hidden;
 }
 
+/* Container utama untuk layout sidebar + main content */
 .container {
     display: flex;
     width: 100%;
     height: 100vh;
 }
 
-/* ==================================== */
-/* 2. SIDEBAR */
-/* ==================================== */
+/* Bagian navigasi kiri */
 .sidebar {
-    width: 230px;
-    background: #1f6eff;
-    color: white;
+    width: 230px;  /* lebar sidebar */ 
+    background: #1f6eff; /* biru */
+    color: white; /* teks putih */
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* vertikal */
     padding: 20px;
     flex-shrink: 0;
     height: 100%;
 }
 
+/* Logo di sidebar */
 .sidebar-logo {
     font-weight: 700;
     font-size: 18px;
@@ -41,6 +40,7 @@ body {
     padding-left: 10px;
 }
 
+/* Daftar menu navigasi */
 .nav-menu {
     list-style: none;
 }
@@ -49,6 +49,7 @@ body {
     margin-bottom: 10px;
 }
 
+/* Item menu */
 .nav-item {
     display: flex;
     align-items: center;
@@ -77,6 +78,7 @@ body {
     object-fit: contain;
 }
 
+/* Item menu aktif */
 .nav-item.active {
     background: #fff;
     color: #1f6eff;
@@ -95,6 +97,7 @@ body {
     margin-top: 30px;
 }
 
+/* Judul section menu */
 .nav-section-title {
     font-size: 14px;
     margin-bottom: 8px;
@@ -104,9 +107,7 @@ body {
     text-transform: uppercase;
 }
 
-/* ==================================== */
-/* 3. MAIN CONTENT */
-/* ==================================== */
+/* Bagian utama di sebelah sidebar */
 .main-content {
     flex: 1;
     padding: 24px 40px 39px 40px;
@@ -121,22 +122,21 @@ body {
     color: #4179F5;
 }
 
+/* Subtitle halaman */
 .page-header .subtitle {
     color: #CFCFCF;
     margin-bottom: 20px;
     font-size: 0.95rem;
 }
 
-/* ==================================== */
-/* 4. CARD UTAMA (Kelola Toko) */
-/* ==================================== */
+/* CARD UTAMA (Kelola Toko) */
 .card {
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-/* Revisi Blue Card */
+/* Blue card khusus */
 .blue-card {
     background: linear-gradient(to right, #163D5A, #2746E5);
     color: white;
@@ -151,7 +151,7 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Teks di dalam Blue Card */
+/* Teks di Blue Card */
 .blue-card h2 {
     font-size: 1.5rem;   /* Ukuran lebih besar */
     font-weight: 700;    /* Tebal */
@@ -164,9 +164,7 @@ body {
     display: none !important;
 }
 
-/* ==================================== */
-/* 5. LAYOUT 2 KOLOM */
-/* ==================================== */
+/* Bagian cerita dan fakta singkat */
 .content-layout {
     display: flex;
     gap: 20px;
@@ -239,9 +237,7 @@ body {
     font-weight: 500;
 }
 
-/* ==================================== */
-/* 6. MODAL (Tetap tapi nonaktif) */
-/* ==================================== */
+/* MODAL (Tetap tapi nonaktif) */
 .modal {
     display: none;
     position: fixed;

@@ -50,11 +50,13 @@ if (editForm) {
         const district = document.getElementById('district').value;
         const zip = document.getElementById('zip').value;
     
+        // Update elemen teks di tampilan admin info
         document.querySelector('.admin-info strong').textContent = storeName;
         const smalls = document.querySelectorAll('.admin-info small');
         smalls[0].textContent = role1;
         smalls[1].textContent = role2;
     
+        // Update tampilan data personal di card kedua
         const personal = document.querySelectorAll('.card:nth-of-type(2) .form-group p');
         personal[0].textContent = firstName;
         personal[1].textContent = lastName;
@@ -62,6 +64,7 @@ if (editForm) {
         personal[3].textContent = phone;
         personal[4].textContent = bioPersonal;
     
+        // Update tampilan alamat di card ketiga
         const address = document.querySelectorAll('.card:nth-of-type(3) .form-group p');
         address[0].textContent = province;
         address[1].textContent = city;
@@ -69,6 +72,7 @@ if (editForm) {
         address[3].textContent = zip;
         address[4].textContent = bioPersonal;
     
+        // Tutup modal setelah submit
         editProfileModal.style.display = 'none';
     });
 }
@@ -82,10 +86,12 @@ if (logoutBtn) {
     });
 }
 
+// Tombol batal logout
 document.getElementById('logout-no')?.addEventListener('click', () => {
     logoutModal.style.display = 'none';
 });
 
+// Tombol konfirmasi logout
 document.getElementById('logout-yes')?.addEventListener('click', () => {
     // 🧹 Hapus data login dari localStorage
     localStorage.removeItem("admin_login");

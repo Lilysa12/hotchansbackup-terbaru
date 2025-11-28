@@ -1,8 +1,11 @@
+// Menunggu seluruh konten DOM dimuat sebelum menjalankan script
 document.addEventListener('DOMContentLoaded', () => {
+    // Mengambil elemen overlay modal
     const overlay = document.getElementById('modal-overlay');
+    // Mengambil elemen tbody tabel sekali untuk efisiensi
     const tableBody = document.getElementById('table-body'); // Ambil table-body sekali
 
-    // --- Fungsi Global ---
+    // --- Fungsi Global untuk membuka modal ---
     function openModal(modalId) {
         const modal = document.getElementById(modalId);
         if (modal && overlay) {
@@ -11,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // --- Fungsi Global untuk menutup semua modal ---
     function closeModal() {
         if (overlay) {
             overlay.classList.remove('show');
@@ -29,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'Mei': '05', 'Juni': '06', 'Juli': '07', 'Agustus': '08',
             'September': '09', 'Oktober': '10', 'November': '11', 'Desember': '12'
         };
+        // Hapus tag HTML dan trim spasi
         const cleanDateStr = dateStr.replace(/<[^>]+>/g, '').trim();
         const parts = cleanDateStr.split(' ');
 
@@ -62,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Tombol tambah barang lama
         const openAddBtnLama = document.querySelectorAll('#open-add-modal-lama');
     if (openAddBtnLama && openAddBtns.length) {
         openAddBtnLama.forEach(btn => {
@@ -69,6 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Tombol cetak modal
     const openPrintBtn = document.getElementById('open-print-modal');
     if (openPrintBtn) {
         openPrintBtn.addEventListener('click', () => openModal('print-modal'));
@@ -77,13 +84,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Event Delegation untuk Tombol Edit & Hapus ---
     if (tableBody) {
         tableBody.addEventListener('click', (e) => {
-            // 3. Cek Tombol Edit
+            // Cek tombol Edit
             const editButton = e.target.closest('.open-edit-modal');
             if (editButton) {
                 const tr = editButton.closest('tr');
                 if (!tr) return;
                 const cells = tr.cells;
-
+                
+                // Ambil semua data dari sel
                 const kode = (cells[0]?.textContent || '').trim();
                 const nama = (cells[1]?.textContent || '').trim();
                 const tanggalStr = cells[2]?.innerHTML || '';
@@ -95,7 +103,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const tanggalISO = parseDate(tanggalStr);
                 const waktuISO = waktuStr.replace('.', ':');
-
+                
+                // Ambil elemen input form edit
                 const editKodeEl = document.getElementById('edit-kode');
                 const editNamaEl = document.getElementById('edit-nama');
                 const editTanggalEl = document.getElementById('edit-tanggal');
@@ -105,6 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const editHargaJualEl = document.getElementById('edit-harga-jual');
                 const editJumlahEl = document.getElementById('edit-jumlah');
 
+                // Isi form edit dengan data dari tabel
                 if (editKodeEl) editKodeEl.value = kode;
                 if (editNamaEl) editNamaEl.value = nama;
                 if (editTanggalEl) editTanggalEl.value = tanggalISO || '';
@@ -117,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 openModal('edit-modal');
             }
 
-            // 4. Cek Tombol Hapus
+            // Cek tombol Hapus
             const deleteButton = e.target.closest('.open-delete-modal');
 
             if (deleteButton) {
@@ -138,6 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', closeModal);
     });
 
+    // Klik di overlay menutup modal
     if (overlay) {
         overlay.addEventListener('click', (event) => {
             if (event.target === overlay) {
@@ -146,6 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Tombol Konfirmasi Hapus ---
     const confirmDeleteBtn = document.getElementById('confirm-delete');
     if (confirmDeleteBtn) {
         confirmDeleteBtn.addEventListener('click', () => {
@@ -156,12 +168,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Tombol batal hapus menutup modal
     const cancelDeleteBtn = document.getElementById('cancel-delete');
     if (cancelDeleteBtn) {
         cancelDeleteBtn.addEventListener('click', closeModal);
     }
 
-    // --- Fungsionalitas Lain ---
+    // --- Tombol Cetak ---
     const submitPrintBtn = document.getElementById('submit-print');
     if (submitPrintBtn) {
         submitPrintBtn.addEventListener('click', () => {
@@ -172,6 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Fungsionalitas Pencarian Tabel ---
     const searchInput = document.getElementById('searchInput');
     if (searchInput && tableBody) {
         searchInput.addEventListener('keyup', () => {
@@ -184,6 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Highlight menu aktif berdasarkan URL saat ini ---
     const currentLocation = window.location.href;
     const menuItems = document.querySelectorAll(".nav-menu .nav-item");
     menuItems.forEach((item) => {

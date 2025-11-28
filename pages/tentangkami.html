@@ -1,39 +1,54 @@
+<!-- Document type HTML -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
+    
+    <!-- karakter UTF-8 -->
     <meta charset="UTF-8">
+    <!-- Responsive design -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Judul halaman -->
     <title>Tentang Kami - Hot Chan's Motor</title>
     
+    <!-- Import CSS utama untuk halaman tentangkami -->
     <link rel="stylesheet" href="../assets/css/tentangkami.css">
     
+    <!-- Optimasi load font Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!--Import font Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
+    <!-- Wrapper utama halaman -->
     <div class="container"> 
         
+        <!-- Sidebar navigasi -->
         <nav class="sidebar">
             <div class="nav-top">
+                <!-- Logo Sidebar -->
                 <h1 class="sidebar-logo">Hot Chan’s Motor</h1>
                 <ul class="nav-menu">
                     <li>
+                        <!-- Menu Dashboard -->
                         <a href="dashboard.html" class="nav-item">
                             <img src="../assets/gambar/icons/dashboard.png" alt="Dashboard"> <span>Dashboard</span>
                         </a>
                     </li>
+                    <!-- Menu Data Barang -->
                     <li>
                         <a href="databarang.html" class="nav-item">
                              <img src="../assets/gambar/icons/data barang.png" alt="Data Barang"> <span>Data Barang</span>
                         </a>
                     </li>
+                    <!-- Menu Barang Masuk -->
                     <li>
                         <a href="barangmasuk.html" class="nav-item">
                              <img src="../assets/gambar/icons/barang masuk.png" alt="Barang Masuk"> <span>Barang Masuk</span>
                         </a>
                     </li>
+                    <!-- Menu Barang Keluar -->
                     <li>
                         <a href="barangkeluar.html" class="nav-item">
                              <img src="../assets/gambar/icons/barang keluar.png" alt="Barang Keluar"> <span>Barang Keluar</span>
@@ -41,14 +56,17 @@
                     </li>
                 </ul>
             </div>
+            <!-- Bagian bawah Sidebar untuk menu akun -->
             <div class="nav-bottom">
                 <span class="nav-section-title">Akun</span>
                 <ul class="nav-menu">
+                    <!-- Menu Tentang Kami (aktif) -->
                     <li>
                         <a href="tentangkami.html" class="nav-item active"> 
                              <img src="../assets/gambar/icons/kelola toko.png" alt="Tentang Kami"> <span>Tentang Kami</span>
                         </a>
                     </li>
+                    <!-- Menu Profile -->
                     <li>
                         <a href="profile.html" class="nav-item"> 
                              <img src="../assets/gambar/icons/profile.png" alt="Profile"> <span>Profile</span>
@@ -58,19 +76,25 @@
             </div>
         </nav>
 
+        <!-- Konten utama halaman -->
         <main class="main-content">
             
+            <!-- Header halaman -->
             <header class="page-header">
                 <h1>Kenali Perjalanan Hot Chan's Motor</h1>
                 <p class="subtitle">Dari langkah kecil menjadi toko tepercaya — inilah perjalanan kami dalam dunia otomotif.</p>
             </header>
 
+            <!-- Kartu biru berisi judul utama tentang kami -->
             <div class="card blue-card">
     <h2>Tentang Kami</h2>
 </div>
 
+            
+            <!-- Layout konten utama dengan dua kolom -->
             <div class="content-layout">
                 
+                <!-- Kolom kiri: cerita toko -->
                 <div class="card about-card">
                     <h3>Cerita Kami</h3>
                     <p>
@@ -81,6 +105,7 @@
                     </p>
                 </div>
 
+                <!-- Kolom kanan: fakta singkat dan jam operasional -->
                 <aside class="right-column">
                     <div class="card fact-card">
                         <h4>Fakta Singkat</h4>
@@ -103,13 +128,17 @@
         </main>
     </div>
 
+    <!-- Modal untuk mengedit cerita toko -->
     <div id="edit-toko-modal" class="modal">
         <div class="modal-content">
+            <!-- Tombol close modal -->
             <span class="close-btn">&times;</span>
             <h2>Edit Cerita Toko</h2>
+            <!-- Form edit cerita toko -->
             <form id="edit-toko-form">
                 <label for="shop-story">Cerita Toko:</label>
                 <textarea id="shop-story" rows="15">...</textarea>
+                <!-- Tombol aksi modal -->
                 <div class="modal-buttons">
                     <button type="button" class="btn-cancel">Batal</button>
                     <button type="submit" class="btn-save">Simpan Perubahan</button>
@@ -118,7 +147,7 @@
         </div>
     </div>
 
-
+    <!-- Menghubungkan file JS khusus halaman tentangkami -->
     <script src="../assets/js/tentangkami.js"></script>
 </body>
 </html>

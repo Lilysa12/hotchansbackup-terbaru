@@ -1,13 +1,11 @@
-// ===================================
-// FILE FRONTEND: js/barangKeluar.js (FINAL FIXED)
-// ===================================
-
+// Mendeklarasikan variabel global untuk overlay, semua modal, dan tombol konfirmasi hapus
 let overlay;
 let allModalContents;
 let confirmDeleteBtn;
 
 /**
  * Menutup semua konten modal (.modal-content)
+ * Fungsi ini menghapus class "show" dari semua modal agar tidak terlihat
  */
 function closeAllContents() {
     if (!allModalContents) {
@@ -21,34 +19,35 @@ function closeAllContents() {
  */
 function closeModal(shouldCloseOverlay = true) {
     if (!overlay) overlay = document.getElementById("modal-overlay");
-
+    // Tutup semua modal
     closeAllContents();
 
+    // Jika overlay ingin ditutup, hapus class "show"
     if (shouldCloseOverlay && overlay) {
         overlay.classList.remove("show");
     }
 }
 
-/**
- * Menampilkan modal spesifik berdasarkan ID
- */
+// Menampilkan modal spesifik berdasarkan ID
 function openModal(modalId) {
     const modalContent = document.getElementById(modalId);
     if (!overlay) overlay = document.getElementById("modal-overlay");
 
     if (modalContent && overlay) {
+        // Tutup semua modal
         closeAllContents();
+        // Jika overlay ingin ditutup, hapus class "show"
         overlay.classList.add("show");
         modalContent.classList.add("show");
     }
 }
 
-/**
- * Parsing tanggal format "12 November 2025" ke "2025-11-12"
- */
+// Parsing tanggal format "12 November 2025" ke "2025-11-12"
+ 
 function parseDate(dateStr) {
     if (!dateStr) return null;
 
+    // Mapping nama bulan ke nomor bulan
     const months = {
         Januari: "01",
         Februari: "02",
@@ -79,9 +78,13 @@ function parseDate(dateStr) {
 
 // === EVENT UTAMA ===
 document.addEventListener("DOMContentLoaded", () => {
+    // Mengambil elemen tbody tabel
     const tableBody = document.getElementById("table-body");
+    // Mengambil overlay modal
     overlay = document.getElementById("modal-overlay");
+    // Mengambil semua modal-content
     allModalContents = document.querySelectorAll(".modal-content");
+    // Tombol konfirmasi hapus
     confirmDeleteBtn = document.getElementById("confirm-delete");
 
     // 1. Load data
@@ -155,6 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const editButton = e.target.closest(".open-edit-modal");
             const deleteButton = e.target.closest(".open-delete-modal");
 
+            // Edit data
             if (editButton) {
                 const id = editButton.dataset.id;
                 const tr = editButton.closest("tr");
@@ -173,6 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     : waktuStr;
 
                 try {
+                    // Mengisi form edit dengan data dari tabel
                     document.getElementById("edit-id").value = id;
                     document.getElementById("edit-kode").value = kode;
                     document.getElementById("edit-nama").value = nama;

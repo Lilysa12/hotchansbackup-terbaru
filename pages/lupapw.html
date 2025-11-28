@@ -1,35 +1,50 @@
+<!-- Document type HTML -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
+    
+    <!-- karakter UTF-8 -->
     <meta charset="UTF-8">
+    <!-- Responsive design -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Judul halaman -->
     <title>Lupa Password - Hot Chan's Motor</title>
     
-    <!-- CSS -->
+    <!-- Import CSS utama untuk halaman lupapw -->
     <link rel="stylesheet" href="../assets/css/lupapw.css"> 
 
-    <!-- Fonts -->
+    <!-- Optimasi load font Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!--Import font Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
+    <!-- Container utama halaman lupa password, membungkus semua isi -->
     <div class="container">
 
         <!-- Form Section -->
         <div class="form-section">
             <div class="content-wrapper">
 
+                <!-- Nama brand/logo -->
                 <h2 class="brand-name">Hot Chan's Motor</h2>
                 
+                <!-- Konten utama form -->
                 <div class="main-content">
+                    <!-- Judul halaman -->
                     <h1>Lupa Password?</h1>
+                    <!-- Subtitle/penjelasan singkat -->
                     <p class="subtitle">Masukkan email untuk mereset password Anda</p>
 
+                    <!-- Form untuk input email pengguna -->
                     <form id="forgotPasswordForm">
                         <div class="form-group">
+                            <!-- Label untuk input email -->
                             <label for="email">Email</label>
+                            <!-- Input email dengan placeholder, autocomplete, dan wajib diisi -->
                             <input 
                                 type="email" 
                                 id="email" 
@@ -46,8 +61,11 @@
                     </form>
                 </div>
 
+                <!-- Bagian bawah form -->
                 <div class="bottom-content">
+                    <!-- Link kembali ke halaman login -->
                     <a href="login.html" class="back-to-login">Back to Login</a>
+                    <!-- Footer halaman -->
                     <p class="copyright">
                         &copy; 2025 Hot Chan's Motor. All rights reserved.
                     </p>
@@ -56,7 +74,7 @@
             </div>
         </div>
 
-        <!-- Image Section -->
+        <!-- Bagian gambar/ilustrasi halaman -->
         <div class="image-section">
             <img 
                 src="../assets/gambar/login/gambar 2.png" 
@@ -67,8 +85,9 @@
 
     </div>
 
-    <!-- JS: Logika Lupa Password -->
+    <!-- Mengimpor script JavaScript untuk logika halaman lupa password (front-end) -->
     <script src="../assets/js/lupapw.js"></script>
+    <!-- Mengimpor script JavaScript untuk koneksi backend/API halaman lupa password -->
     <script src="../api/lupapw.js"></script>
     
 </body>

@@ -1,6 +1,5 @@
-/* ==================================== */
-/* 1. GLOBAL & RESET */
-/* ==================================== */
+/* Menghapus margin dan padding default, serta mengatur box-sizing ke border-box.
+   Semua elemen menggunakan font Poppins/Inter */
 * {
   margin: 0;
   padding: 0;
@@ -8,20 +7,20 @@
   font-family: "Poppins", "Inter", sans-serif;
 }
 
+/* Mengatur background halaman dan tinggi minimum agar selalu memenuhi viewport */
 body {
   background-color: #f7f9fc;
-  min-height: 100dvh; /* modern */
-  min-height: 100vh;  /* fallback untuk browser lama */
+  min-height: 100dvh; 
+  min-height: 100vh;  
 }
 
+/* Container utama untuk dashboard menggunakan flexbox agar sidebar dan main-content sejajar */
 .dashboard-container {
   display: flex;
   width: 100%;
 }
 
-/* ==================================== */
-/* 2. SIDEBAR (PERBAIKAN TOTAL) */
-/* ==================================== */
+/* Sidebar kiri tetap, full height, warna biru, padding */
 .sidebar {
   width: 230px;
   background: #1f6eff;
@@ -39,6 +38,7 @@ body {
   overflow-y: auto;
 }
 
+/* Logo/brand di sidebar */
 .sidebar-logo {
   font-weight: 700;
   font-size: 18px;
@@ -47,7 +47,7 @@ body {
   color: #ffffff;
 }
 
-/* NAVIGATION */
+/* Menu navigasi sidebar */
 .nav-menu {
   list-style: none;
   padding: 0;
@@ -58,6 +58,7 @@ body {
   margin-bottom: 8px;
 }
 
+/* Item menu */
 .nav-item {
   display: flex;
   flex-direction: row;
@@ -72,10 +73,12 @@ body {
   font-weight: 400;
 }
 
+/* Hover effect untuk item menu */
 .nav-item:hover {
   background: rgba(255, 255, 255, 0.1);
 }
 
+/* Ikon di menu */
 .nav-item img {
   width: 18px;
   height: 18px;
@@ -85,6 +88,7 @@ body {
   transition: filter 0.3s, opacity 0.3s;
 }
 
+/* Menu aktif */
 .nav-item.active {
   background: #ffffff;
   color: #1f6eff;
@@ -110,6 +114,7 @@ body {
   border-top: none;
 }
 
+/* Judul section di sidebar */
 .nav-section-title {
   font-size: 14px;
   font-weight: 500;
@@ -119,7 +124,7 @@ body {
   display: block;
 }
 
-
+/* Area konten utama di sebelah sidebar */
 .main-content {
   margin-left: 230px;
   flex: 1;
@@ -129,16 +134,16 @@ body {
   overflow-y: auto;
 }
 
-/* Styling untuk judul & deskripsi di halaman utama */
-/* Styling untuk judul & deskripsi di halaman utama */
+/* Styling judul di halaman utama */
 .main-content .welcome-section h1 {
-  color: #4179F5 !important; /* <-- TAMBAHKAN !important */
+  color: #4179F5 !important; 
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 8px;
   font-family: "Poppins", "Inter", sans-serif;
 }
 
+/* Styling deskripsi halaman utama */
 .main-content .welcome-section p {
   color: #BDBDBD !important;
   font-size: 16px;
@@ -146,7 +151,7 @@ body {
   font-family: "Poppins", "Inter", sans-serif;
 }
 
-
+/* Container kartu ringkasan */
 .summary-cards {
   display: flex;
   gap: 25px;
@@ -154,6 +159,7 @@ body {
   align-items: flex-start;
 }
 
+/* Styling kartu */
 .card.stat-card {
   width: 267px;
   height: 169px;
@@ -161,23 +167,26 @@ body {
   border-radius: 16px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* perbaikan: gunakan flex-start */
-  align-items: flex-start;     /* perbaikan: gunakan flex-start */
+  justify-content: flex-start; 
+  align-items: flex-start;     
   padding: 25px 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
   transition: transform 0.2s ease;
 }
 
+/* Hover effect kartu */
 .card.stat-card:hover {
   transform: translateY(-4px);
 }
 
+/* Kartu biru dengan gradient */
 .card.stat-card.primary {
   background: linear-gradient(135deg, #C5DBF8 0%, #0A51C4 100%);
   color: white;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+/* Judul kartu */
 .card.stat-card h4 {
   font-weight: 600;
   font-size: 20px;
@@ -192,9 +201,10 @@ body {
   font-size: 20px;
   margin-bottom: 10px;
   text-align: left;
-  /* justify-content dihapus karena h4 bukan flex container */
+
 }
 
+/* Angka di kartu */
 .stat-number {
   font-size: 64px;
   font-weight: 600;
@@ -211,9 +221,7 @@ body {
   text-align: left;
 }
 
-/* ==================================== */
-/* 5. TABLE */
-/* ==================================== */
+/* Container tabel */
 .table-section {
   margin-top: 35px;
   margin-bottom: 35px;
@@ -223,7 +231,7 @@ body {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
 }
 
-/* REVISI 1: HEADER TABEL */
+/* Header tabel */
 .table-header {
   display: flex;
   justify-content: center;
@@ -245,6 +253,7 @@ body {
   color: #1F6EFF;
 }
 
+/* Bagian show entries */
 .showing {
   background-color: #f2f2f2;
   border-radius: 8px;
@@ -270,6 +279,7 @@ body {
   cursor: pointer;
 }
 
+/* Styling tabel */
 .table-container table {
   width: 100%;
   border-collapse: collapse;
@@ -292,17 +302,19 @@ body {
   text-align: center;
 }
 
-/* Buat kolom ke-2 (Nama Barang) rata kiri */
+/* Kolom Nama Barang rata kiri */
 .table-container th:nth-child(2),
 .table-container td:nth-child(2) {
   text-align: left;
 }
 
+/* Styling th */
 .table-container th {
   font-weight: 600;
   color: #333;
 }
 
+/* Highlight tanggal */
 span.date-highlight {
   background-color: #f5f5f5;
   border-radius: 6px;
@@ -310,6 +322,7 @@ span.date-highlight {
   display: inline-block;
 }
 
+/* Warna kuantitas */
 span.quantity-red {
   color: #FF0000;
   font-weight: 400;
@@ -320,9 +333,8 @@ span.quantity-green {
   font-weight: 400;
 }
 
-/* ==================================== */
-/* 6. PAGINATION */
-/* ==================================== */
+/* PAGINATION */
+
 .pagination {
   display: flex;
   justify-content: space-between;
@@ -376,7 +388,4 @@ span.quantity-green {
   z-index: 100;
 }
 
-/* ==================== */
-/* PERBAIKAN WARNA TEKS (DUPLIKAT) */
-/* ==================== */
-/* Duplikat aturan yang tidak perlu sudah dihapus */
+

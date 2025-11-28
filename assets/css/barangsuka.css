@@ -1,4 +1,5 @@
 /* ==== PENGATURAN DASAR & FONT ==== */
+/* Mendefinisikan variabel warna untuk konsistensi di seluruh halaman */
 :root {
     --blue-primary: #1F6EFF;
     --blue-dark: #1F6EFF;
@@ -12,12 +13,14 @@
     --green: #10B981;
 }
 
+/* Reset margin, padding, dan box-sizing */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Atur font, warna dasar, dan flex layout body */
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--gray-bg);
@@ -25,12 +28,14 @@ body {
     display: flex;
 }
 
+/* Container utama untuk sidebar + konten */
 .container {
     display: flex;
     width: 100%;
 }
 
 /* ==== SIDEBAR ==== */
+/* Sidebar kiri tetap, full height, warna biru, padding */
 .sidebar {
     width: 230px;
     background: #1f6eff;
@@ -45,6 +50,7 @@ body {
     top: 0;
 }
 
+/* Logo di sidebar */
 .sidebar-logo {
     font-weight: 700;
     font-size: 18px;
@@ -52,6 +58,7 @@ body {
     padding-left: 10px;
 }
 
+/* Menu navigasi sidebar */
 .nav-menu {
     list-style: none;
 }
@@ -60,6 +67,7 @@ body {
     margin-bottom: 15px;
 }
 
+/* Item menu individual */
 .nav-item {
     display: flex;
     align-items: center;
@@ -75,12 +83,14 @@ body {
     background: rgba(255, 255, 255, 0.1);
 }
 
+/* Ikon di menu */
 .nav-item img {
     width: 18px;
     margin-right: 10px;
     filter: brightness(0) invert(1);
 }
 
+/* Menu aktif (highlight) */
 .nav-item.active {
     background: #fff;
     color: #1f6eff;
@@ -95,10 +105,12 @@ body {
     filter: none;
 }
 
+/* Section bawah sidebar */
 .nav-bottom {
     margin-top: 30px;
 }
 
+/* Judul section menu */
 .nav-section-title {
     font-size: 14px;
     margin-bottom: 8px;
@@ -108,6 +120,7 @@ body {
 }
 
 /* ==== KONTEN UTAMA ==== */
+/* Area konten sebelah kanan */
 .main-content {
     flex: 1;
     padding: 30px 40px;
@@ -117,6 +130,7 @@ body {
     margin-left: 230px;
 }
 
+/* Header konten */
 .main-content header h2 {
     color: var(--blue-primary);
     font-size: 28px;
@@ -128,6 +142,7 @@ body {
     margin-top: 4px;
 }
 
+/* Judul sambutan */
 .main-content .welcome-title {
     color: #1f6eff;
     font-size: 22px;
@@ -146,6 +161,7 @@ body {
     margin-top: 24px;
 }
 
+/* Kartu default */
 .card {
     width: 278px;
     height: 117px;
@@ -159,6 +175,7 @@ body {
     border: 1px solid #FFFFFF;
 }
 
+/* Kartu biru (highlight) */
 .card.card-blue {
     background: linear-gradient(to bottom right, #4179F5, #26478F);
     color: var(--white);
@@ -178,12 +195,14 @@ body {
     line-height: 1;
 }
 
+/* Card Action (tombol atau info tambahan) */
 .card.card-action h3 {
     font-size: 16px;
     font-weight: 500;
     color: var(--gray-dark);
 }
 
+/* Tombol utama */
 .btn-primary {
     background-color: var(--blue-primary);
     color: var(--white);
@@ -213,6 +232,7 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
+/* Header tabel */
 .table-header {
     display: flex;
     justify-content: space-between;
@@ -226,6 +246,7 @@ body {
     color: var(--blue-primary);
 }
 
+/* Kontrol tabel (search, entries) */
 .table-controls {
     display: flex;
     align-items: center;
@@ -250,6 +271,7 @@ body {
     font-weight: 500;
 }
 
+/* Search bar */
 .search-bar {
     display: flex;
     align-items: center;
@@ -273,11 +295,13 @@ body {
     background: none;
 }
 
+/* Container tabel scroll horizontal */
 .table-container {
     width: 100%;
     overflow-x: auto;
 }
 
+/* Tabel */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -301,6 +325,7 @@ tbody tr:last-child td {
     border-bottom: none;
 }
 
+/* Highlight tanggal */
 .date-highlight {
     background-color: #F3F3F3;
     color: #9E9E9E;
@@ -309,6 +334,7 @@ tbody tr:last-child td {
     font-weight: 500;
 }
 
+/* Warna jumlah */
 .quantity-red {
     color: var(--red);
     font-weight: 600;
@@ -319,6 +345,7 @@ tbody tr:last-child td {
     font-weight: 600;
 }
 
+/* Ikon aksi */
 .action-icon {
     width: 18px;
     height: 18px;
@@ -371,6 +398,7 @@ tbody tr:last-child td {
 }
 
 /* ==== MODALS (Popups) ==== */
+/* Overlay modal */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -386,6 +414,7 @@ tbody tr:last-child td {
     display: flex;
 }
 
+/* Konten modal */
 .modal-content {
     background-color: var(--white);
     border-radius: 12px;
@@ -413,6 +442,7 @@ tbody tr:last-child td {
     text-align: center;
 }
 
+/* Tombol close modal */
 .close-modal {
     position: absolute;
     top: 16px;
@@ -423,6 +453,7 @@ tbody tr:last-child td {
     line-height: 1;
 }
 
+/* Judul modal */
 .modal-title {
     font-size: 20px;
     font-weight: 600;
@@ -474,7 +505,7 @@ tbody tr:last-child td {
     background-color: var(--white);
 }
 
-/* Input dengan ikon */
+/* Input dengan ikon kalender */
 .input-with-icon {
     position: relative;
 }
@@ -509,6 +540,7 @@ input[type="month"]::-webkit-calendar-picker-indicator {
     font-size: 16px;
 }
 
+/* Tombol modal aksi (simpan/batal) */
 .modal-buttons {
     grid-column: 1 / -1;
     display: flex;
@@ -602,7 +634,7 @@ input[type="month"]::-webkit-calendar-picker-indicator {
     background-color: var(--white);
 }
 
-/* ==== STYLE UNTUK PRINT ==== */
+/* ==== PRINT STYLE ==== */
 .print-title {
     display: none;
 }
@@ -683,19 +715,19 @@ input[type="month"]::-webkit-calendar-picker-indicator {
     }
 }
 
-/* Tambahkan atau perbarui kode ini di file CSS Anda */
+ /* Menampilkan kolom tertentu untuk print */
 .action-icon {
-    width: 18px; /* Sesuaikan ukuran ikon */
-    height: 18px; /* Sesuaikan ukuran ikon */
+    width: 18px; 
+    height: 18px; 
     vertical-align: middle;
 }
 
-/* Atur juga container tombolnya (<a>) */
+ /* Menyembunyikan kolom lain */
 .btn-edit, .btn-delete {
     display: inline-block;
-    padding: 4px; /* Memberi ruang sentuh yang nyaman */
+    padding: 4px;
     margin: 0 2px;
-    /* Hilangkan border/background jika ada */
+
     text-decoration: none; 
     border: none;
     background: none;
