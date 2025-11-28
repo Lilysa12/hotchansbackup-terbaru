@@ -18,7 +18,7 @@ const app = express();
 // Security middleware
 app.use(helmet());
 
-// CORS FIX — WAJIB untuk frontend bisa panggil backend
+// CORS FIX â€” WAJIB untuk frontend bisa panggil backend
 app.use(cors());
 
 // Parse JSON
@@ -41,5 +41,6 @@ app.post("/api/verifotp", verifotpHandler);
 // Server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () =>
-  console.log(`🚀 Server running on http://localhost:${PORT}/`)
+  console.log(`🚀 Node server running on PORT ${PORT}`)
+
 );

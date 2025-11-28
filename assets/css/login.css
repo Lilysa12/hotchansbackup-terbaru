@@ -1,4 +1,6 @@
-/* Reset margin/padding semua elemen dan set box-sizing */
+/* ==================================== */
+/* 1. GLOBAL & RESET */
+/* ==================================== */
 * {
     margin: 0;
     padding: 0;
@@ -6,23 +8,24 @@
     font-family: 'Poppins', 'Inter', sans-serif;
 }
 
-/* Body khusus halaman login */
 body.login-page {
     min-height: 100vh;
     background-color: #f4f7f6;
     position: relative;
-    overflow: hidden; 
+    overflow: hidden; /* Mencegah scrolling aneh */
 }
 
-/* Container utama login: 2 panel kiri-kanan */
+/* ==================================== */
+/* 2. LAYOUT UTAMA (DEFAULT 50/50) */
+/* ==================================== */
 .login-container {
-    display: flex; 
+    display: flex; /* KUNCI: Layout 50/50 */
     width: 100%;
     min-height: 100vh;
     position: relative;
 }
 
-/* Kiri: Form login/OTP */
+/* KIRI (FORM) */
 .left-section {
     flex-basis: 50%;
     z-index: 2;
@@ -31,11 +34,11 @@ body.login-page {
     align-items: center;
     padding: 60px 40px;
     background-color: #fff;
-    
+    /* Transisi agar perpindahan layout mulus */
     transition: flex-basis 0.4s ease-in-out; 
 }
 
-/* Kanan: Gambar/ilustrasi */
+/* KANAN (GAMBAR) */
 .right-section {
     flex-basis: 50%;
     z-index: 1;
@@ -47,24 +50,29 @@ body.login-page {
     transition: flex-basis 0.4s ease-in-out;
 }
 
-/* Gambar di panel kanan */
 .right-section img {
     width: 80%;
     max-width: 600px;
     height: auto;
 }
 
-/* Wrapper untuk halaman login/form */
+/* ==================================== */
+/* 3. KONTEN DI DALAM .left-section */
+/* ==================================== */
 .page {
     width: 100%;
-    max-width: 400px; 
+    max-width: 400px; /* Batasan lebar default (untuk form login) */
 }
 
-/* Saat panel kanan disembunyikan (misal OTP), fleksibel panel jadi 0% */
+/* ==================================== */
+/* 4. OVERRIDE (SAAT OTP/RESET AKTIF) */
+/* ==================================== */
+
+/* Ini adalah KUNCI-nya. Saat JS menyembunyikan .right-section... */
 .right-section.hidden {
-    flex-basis: 0 !important; 
+    flex-basis: 0 !important; /* Paksa panel kanan jadi 0% */
 }
-/* Otomatis panel kiri ambil 100% saat kanan hidden */
+/* ...maka .left-section otomatis mengambil 100% */
 .left-section:has(+ .right-section.hidden) {
     flex-basis: 100% !important; 
 }
@@ -73,14 +81,16 @@ body.login-page {
 #otp-page,
 #newpass-page,
 #success-page {
-    max-width: none; 
+    max-width: none; /* Hapus batasan 400px */
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center; /* Tengahkan semua */
     text-align: center;
 }
 
-/* Logo halaman */
+/* ==================================== */
+/* 5. FORM & KOMPONEN (UMUM) */
+/* ==================================== */
 .logo {
     font-size: 18px;
     font-weight: 600;
@@ -88,26 +98,23 @@ body.login-page {
     margin-bottom: 20px;
 }
 
-/* Judul utama */
 h1 {
     font-size: 30px;
     margin-bottom: 10px;
 }
 
-/* Subtitle/deskripsi */
 .subtitle {
     color: #777;
     margin-bottom: 25px;
 }
 
-/* Form default: flex vertical dengan jarak antar input */
 form {
     display: flex;
     flex-direction: column;
     gap: 15px;
     width: 100%;
 }
-/* Kartu form OTP/Newpass */
+/* Kartu untuk form newpass */
 .centered-form-card {
     background: #fff;
     border-radius: 18px;
@@ -116,14 +123,12 @@ form {
     max-width: 520px;
 }
 
-/* Label form */
 label {
     font-size: 14px;
     font-weight: 500;
-    text-align: left; 
+    text-align: left; /* Pastikan label rata kiri */
 }
 
-/* Input form */
 input[type="email"],
 input[type="password"],
 input[type="text"] {
@@ -134,7 +139,6 @@ input[type="text"] {
     font-size: 16px;
 }
 
-/* Link kecil (Forgot password) */
 .link {
     text-align: right;
     color: #3b82f6;
@@ -142,7 +146,6 @@ input[type="text"] {
     text-decoration: none;
 }
 
-/* Tombol utama form */
 .btn-primary {
     background-color: #4388FF;
     color: #fff;
@@ -156,7 +159,6 @@ input[type="text"] {
     width: 100%;
 }
 
-/* Footer halaman login */
 footer {
     text-align: center;
     font-size: 12px;
@@ -164,7 +166,6 @@ footer {
     margin-top: 30px;
 }
 
-/* Link kembali */
 .back-link {
     color: #3b82f6;
     font-size: 14px;
@@ -172,23 +173,26 @@ footer {
     margin-top: 20px;
 }
 
-/* Class hidden umum */
 .hidden {
     display: none !important;
 }
 
-/* Wrapper OTP */
+/* ==================================== */
+/* 6. OTP STYLING (Dari CSS Anda) */
+/* ==================================== */
+
+/* Ini adalah class yang benar dari CSS Anda */
 .otp-wrapper {
     background: #fff;
     border-radius: 18px;
     padding: 40px 44px;
-    box-shadow: 0 0 0 8px rgba(244,247,246,1); 
+    box-shadow: 0 0 0 8px rgba(244,247,246,1); /* border look yang lembut */
     max-width: 520px;
     margin: 0 auto;
     text-align: center;
 }
 
-/* Container input OTP */
+/* kotak OTP */
 .otp-container {
     display: flex;
     justify-content: center;
@@ -196,7 +200,6 @@ footer {
     margin-bottom: 14px;
 }
 
-/* Kotak input OTP */
 .otp-input {
     width: 58px;
     height: 64px;
@@ -209,20 +212,19 @@ footer {
     transition: border-color .15s, box-shadow .15s;
 }
 
-/* Fokus input OTP */
 .otp-input:focus {
     border-color: #3b82f6;
     box-shadow: 0 0 6px rgba(59,130,246,0.18);
 }
 
-/* Timer OTP */
+/* timer */
 #timer {
     font-size: 15px;
     color: #555;
     margin: 10px 0 18px 0;
 }
 
-/* Tombol konfirmasi OTP */
+/* tombol konfirmasi di otp */
 .otp-wrapper .btn-primary {
     background-color: #3b82f6;
     max-width: 360px;
@@ -230,7 +232,7 @@ footer {
     margin: 0 auto 12px auto;
 }
 
-/* Resend OTP */
+/* resend text */
 .resend {
     font-size: 14px;
     color: #888;
@@ -241,23 +243,24 @@ footer {
     font-weight: 500;
 }
 
-/*  RESPONSIVE  */
+/* ==================================== */
+/* 7. RESPONSIVE (Sembunyikan Kanan) */
+/* ==================================== */
 @media (max-width: 980px) {
-    /* Sembunyikan panel kanan untuk layar kecil */
     .right-section {
-        display: none; 
+        display: none; /* Sembunyikan panel kanan */
     }
     .left-section {
-        flex-basis: 100%; 
+        flex-basis: 100%; /* Form ambil 100% */
     }
     .login-container {
         padding: 40px 20px;
     }
     .page {
-        max-width: 400px; 
+        max-width: 400px; /* Pastikan form tetap rapi di tengah */
     }
     
-    /* OTP/Reset tetap centered */
+    /* Pastikan halaman OTP/Reset tetap centered */
     #otp-page,
     #newpass-page,
     #success-page {

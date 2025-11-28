@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnSubmit = document.getElementById("btnSubmit");
 
   // API_BASE digunakan sebagai alamat server (localhost atau domain)
-const API_BASE = "http://localhost:3000";
+const API_BASE = "https://hotchans.my.id/hotchansmotor";
 
 // Menangani event submit pada form  
 form.addEventListener("submit", async (e) => {
