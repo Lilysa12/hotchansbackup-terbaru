@@ -157,92 +157,6 @@
   </div>
 
   <script>
-    // === PAGINATION BARU (4 awal, 4 akhir, tengah mengikuti page aktif) ===
-function updatePagination(type, totalCount, page, limit) {
-<<<<<<< HEAD
-  const totalPages = Math.ceil(totalCount / limit);
-=======
-  // Hitung total halaman
-  const totalPages = Math.ceil(totalCount / limit);
-  // Prefix untuk membedakan tabel Masuk/Keluar
->>>>>>> 81c1f060e5184fccac150abd8278cedec423077f
-  const prefix = type === "Masuk" ? "Masuk" : "Keluar";
-  const pageNumbers = document.getElementById(`pageNumbers${prefix}`);
-  const prev = document.getElementById(`prevPage${prefix}`);
-  const next = document.getElementById(`nextPage${prefix}`);
-
-<<<<<<< HEAD
-  pageNumbers.innerHTML = "";
-  prev.disabled = page === 1;
-  next.disabled = page === totalPages || totalPages === 0;
-
-  const maxStart = 4; 
-  const maxEnd = 4;
-
-  const fragment = document.createDocumentFragment();
-
-=======
-  // Bersihkan page numbers sebelumnya
-  pageNumbers.innerHTML = "";
- // Disable tombol prev/next jika berada di awal/akhir halaman
-  prev.disabled = page === 1;
-  next.disabled = page === totalPages || totalPages === 0;
-
-  // jumlah halaman 
-  const maxStart = 4; 
-  const maxEnd = 4;
-
-  // untuk mencegah duplikasi
-  const fragment = document.createDocumentFragment();
-
-  // Fungsi membuat tombol page number
->>>>>>> 81c1f060e5184fccac150abd8278cedec423077f
-  function createBtn(i) {
-    const span = document.createElement("span");
-    span.textContent = i;
-    if (i === page) span.classList.add("active");
-    span.addEventListener("click", () => {
-      type === "Masuk" ? loadBarangMasuk(i, limit) : loadBarangKeluar(i, limit);
-    });
-    return span;
-  }
-
-  function ellipsis() {
-    const span = document.createElement("span");
-    span.textContent = "...";
-    span.classList.add("ellipsis");
-    return span;
-  }
-
-  // 1️⃣ 4 halaman pertama
-  for (let i = 1; i <= Math.min(maxStart, totalPages); i++) {
-    fragment.appendChild(createBtn(i));
-  }
-
-  // 2️⃣ Ellipsis setelah awal
-  if (page > maxStart + 2) fragment.appendChild(ellipsis());
-
-  // 3️⃣ Halaman tengah sekitar page aktif
-  const midStart = Math.max(page - 1, maxStart + 1);
-  const midEnd = Math.min(page + 1, totalPages - maxEnd);
-
-  for (let i = midStart; i <= midEnd; i++) {
-    if (i > maxStart && i < totalPages - maxEnd + 1) {
-      fragment.appendChild(createBtn(i));
-    }
-  }
-
-  // 4️⃣ Ellipsis sebelum halaman akhir
-  if (page < totalPages - (maxEnd + 1)) fragment.appendChild(ellipsis());
-
-  // 5️⃣ 4 halaman terakhir
-  const startLast = Math.max(totalPages - maxEnd + 1, maxStart + 1);
-  for (let i = startLast; i <= totalPages; i++) {
-    fragment.appendChild(createBtn(i));
-  }
-
-  pageNumbers.appendChild(fragment);
-}
 
   </script>
 
@@ -294,47 +208,6 @@ function updatePagination(type, totalCount, page, limit) {
       console.error("Gagal memuat data statistik:", err.message);
     }
   }
-
-//  
-  // async function loadBarangMasuk(page = 1, limit = 5) {
-  //   currentPageMasuk = page;
-  //   rowsPerPageMasuk = limit;
-  //   const rangeFrom = (page - 1) * limit;
-  //   const rangeTo = page * limit - 1;
-  //   const tabelMasukBody = document.querySelector("#tabelMasuk tbody");
-
-  //   tabelMasukBody.innerHTML = `<tr><td colspan="4" style="text-align:center;">Memuat...</td></tr>`;
-
-  //   const { data, error, count } = await supabase
-  //     .from("barang_masuk")
-  //     .select("*", { count: "exact" })
-  //     .order("tanggal", { ascending: false })
-  //     .range(rangeFrom, rangeTo);
-
-  //   tabelMasukBody.innerHTML = "";
-  //   if (error) {
-  //     tabelMasukBody.innerHTML = `<tr><td colspan="4">Gagal memuat data.</td></tr>`;
-  //     return;
-  //   }
-
-  //   data.forEach((item) => {
-  //     tabelMasukBody.innerHTML += `
-  //       <tr>
-  //         <td>${item.kode_barang}</td>
-  //         <td>${item.nama_barang}</td>
-  //         <td><span class="date-highlight">${new Date(
-  //           item.tanggal
-  //         ).toLocaleDateString("id-ID")}</span></td>
-  //         <td>${
-  //           item.stok_barang
-  //             ? `<span class="quantity-green">+${item.stok_barang}</span>`
-  //             : "-"
-  //         }</td>
-  //       </tr>`;
-  //   });
-
-  //   updatePagination("Masuk", count, page, limit);
-  // }
 
    // Fungsi loadBarangMasuk: mengambil data barang masuk dan menampilkan di tabel dengan pagination
   async function loadBarangMasuk(page = 1, limit = 5) {
@@ -420,7 +293,7 @@ function updatePagination(type, totalCount, page, limit) {
   }
 
   // === PAGINATION ===
-  // === PAGINATION BARU (4 awal, 4 akhir, tengah mengikuti page aktif) ===
+ // === PERBAIKAN FUNGSI PAGINATION (Maksimal 4 Angka) ===
 function updatePagination(type, totalCount, page, limit) {
   const totalPages = Math.ceil(totalCount / limit);
   const prefix = type === "Masuk" ? "Masuk" : "Keluar";
@@ -428,80 +301,59 @@ function updatePagination(type, totalCount, page, limit) {
   const prev = document.getElementById(`prevPage${prefix}`);
   const next = document.getElementById(`nextPage${prefix}`);
 
-  // bersihkan dulu
+  // Bersihkan elemen lama
   pageNumbers.innerHTML = "";
+  
+  // Atur state tombol Prev/Next
   prev.disabled = page === 1;
   next.disabled = page === totalPages || totalPages === 0;
 
-  const maxStart = 4; // jumlah halaman awal yang selalu tampil
-  const maxEnd = 4;   // jumlah halaman akhir yang selalu tampil
-  const pagesAround = 1; // jumlah halaman di sekitar halaman aktif
+  if (totalPages === 0) return;
 
+  // === LOGIKA BARU: HANYA TAMPIL 4 NOMOR ===
+  const maxVisible = 4; // Jumlah maksimal tombol angka yang muncul
+  
+  // Hitung startPage agar halaman aktif berada di posisi ke-2 (jika memungkinkan)
+  let startPage = page - 1; 
+  
+  // Batasi agar startPage tidak kurang dari 1
+  if (startPage < 1) {
+      startPage = 1;
+  }
+  
+  // Hitung endPage berdasarkan startPage + jumlah yang diinginkan
+  let endPage = startPage + maxVisible - 1;
+
+  // Jika endPage melebihi total halaman, geser range mundur
+  if (endPage > totalPages) {
+      endPage = totalPages;
+      startPage = Math.max(1, endPage - maxVisible + 1);
+  }
+
+  // === RENDER TOMBOL ===
   const fragment = document.createDocumentFragment();
-  const shown = new Set(); // untuk mencegah duplikasi
-
-  function createBtn(i) {
+  
+  for (let i = startPage; i <= endPage; i++) {
     const span = document.createElement("span");
-    span.textContent = i < 10 ? `0${i}` : `${i}`;
+    // Format angka (contoh: 01, 02, 10)
+    span.textContent = i < 10 ? `0${i}` : `${i}`; 
     span.classList.add("page-btn");
+    
+    // Tambahkan class active jika ini halaman sekarang
     if (i === page) span.classList.add("active");
+    
+    // Event listener untuk klik
     span.addEventListener("click", () => {
       if (i === page) return;
       if (type === "Masuk") loadBarangMasuk(i, limit);
       else loadBarangKeluar(i, limit);
     });
-    shown.add(i);
-    return span;
+    
+    fragment.appendChild(span);
   }
-
-  function createEllipsis() {
-    const span = document.createElement("span");
-    span.textContent = "...";
-    span.classList.add("ellipsis");
-    return span;
-  }
-
-  if (totalPages === 0) {
-    // kosong: tidak ada halaman
-    pageNumbers.appendChild(fragment);
-    return;
-  }
-
-  // 1) Halaman awal (1..maxStart)
-  const firstEnd = Math.min(maxStart, totalPages);
-  for (let i = 1; i <= firstEnd; i++) {
-    fragment.appendChild(createBtn(i));
-  }
-
-  // 2) Halaman tengah (sekitar page)
-  const middleStart = Math.max(firstEnd + 1, page - pagesAround);
-  const middleEnd = Math.min(Math.max(middleStart, page + pagesAround), Math.max( totalPages - maxEnd, firstEnd )); // pastikan tidak melewati area akhir
-  // Jika ada gap antara last shown (firstEnd) dan middleStart, sisipkan ellipsis
-  if (middleStart > firstEnd + 1) {
-    fragment.appendChild(createEllipsis());
-  }
-
-  for (let i = middleStart; i <= middleEnd; i++) {
-    if (!shown.has(i)) fragment.appendChild(createBtn(i));
-  }
-
-  // 3) Jika ada gap antara middleEnd dan startLast, sisipkan ellipsis
-  const startLast = Math.max(totalPages - maxEnd + 1, firstEnd + 1);
-  if (startLast > middleEnd + 1) {
-    fragment.appendChild(createEllipsis());
-  }
-
-  // 4) Halaman akhir
-  for (let i = startLast; i <= totalPages; i++) {
-    if (!shown.has(i)) fragment.appendChild(createBtn(i));
-  }
-
-  // jika kasus ketika totalPages <= maxStart + maxEnd, kode di atas akan otomatis
-  // menampilkan semua halaman tanpa ellipsis karena ranges saling bertumpuk
 
   pageNumbers.appendChild(fragment);
 }
-
 
 
   // === JALANKAN SEMUA SAAT HALAMAN DIBUKA ===
@@ -548,14 +400,6 @@ function updatePagination(type, totalCount, page, limit) {
    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="../api/dasboard.js"></script>
 
-    <!-- MATIKAN SEMUA FUNGSI PAGINATION LAMA -->
-  <script>
-  window.updatePaginationLama = window.updatePagination;
-  window.updatePagination = function(){};
-
-  window.loadData = function(){};
-  window.renderPagination = function(){};
-  window.renderPageNumbers = function(){};
 
 </script>
 

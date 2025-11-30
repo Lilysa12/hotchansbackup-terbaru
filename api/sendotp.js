@@ -1,3 +1,6 @@
+const SUPABASE_URL = "https://cwvcprzdovbpteiuuvgj.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9....";
+
 // /api/sendotp.js
 import nodemailer from "nodemailer";
 import { createClient } from "@supabase/supabase-js";

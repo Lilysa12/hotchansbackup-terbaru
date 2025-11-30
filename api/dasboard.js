@@ -125,34 +125,6 @@ async function loadBarangKeluar(page = 1, limit = 5) {
 }
 
 // ===============================
-// 4. PAGINATION
-// ===============================
-function updatePagination(type, totalCount, page, limit) {
-  const totalPages = Math.ceil(totalCount / limit);
-  const prefix = type === "Masuk" ? "Masuk" : "Keluar";
-
-  const pageNumbers = document.getElementById(`pageNumbers${prefix}`);
-  const prev = document.getElementById(`prevPage${prefix}`);
-  const next = document.getElementById(`nextPage${prefix}`);
-
-  pageNumbers.innerHTML = "";
-  prev.disabled = (page <= 1);
-  next.disabled = (page >= totalPages);
-
-  for (let i = 1; i <= totalPages; i++) {
-    const span = document.createElement("span");
-    span.textContent = i;
-    if (i === page) span.classList.add("active");
-    span.onclick = () => {
-      type === "Masuk"
-        ? loadBarangMasuk(i, limit)
-        : loadBarangKeluar(i, limit);
-    };
-    pageNumbers.appendChild(span);
-  }
-}
-
-// ===============================
 // 5. START
 // ===============================
 let currentPageMasuk = 1;
